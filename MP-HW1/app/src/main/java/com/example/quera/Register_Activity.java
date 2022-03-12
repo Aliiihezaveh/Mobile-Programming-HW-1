@@ -5,10 +5,13 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
-public class Login_Activity extends AppCompatActivity {
+public class Register_Activity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -16,10 +19,11 @@ public class Login_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         tabLayout = findViewById(R.id.loginTabLayout);
         viewPager = findViewById(R.id.loginViewPager);
+
 
         tabLayout.setupWithViewPager(viewPager);
 
