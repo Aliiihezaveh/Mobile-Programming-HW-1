@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Account {
     public static ArrayList<Account> accounts;
+    public static Account loggedInAccount;
 
     static {
         accounts = new ArrayList<>();
@@ -11,25 +12,27 @@ public class Account {
 
     private String username;
     private String password;
-    private String firstname;
-    private String lastname;
+    private String name;
     private ArrayList<Classroom> classrooms;
 
     public Account(){
         this.username = null;
         this.password = null;
-        this.firstname = null;
-        this.lastname = null;
+        this.name = null;
         this.classrooms = new ArrayList<>();
     }
 
-    public Account(String username, String password, String firstname, String lastname){
+    public Account(String username, String password, String name){
         this.username = username;
         this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.name = name;
         this.classrooms = new ArrayList<>();
         accounts.add(this);
+    }
+
+    public static boolean canRegister(String username, String name, String password){
+        if(username == null || name == null || password == null) return false;
+        return getAccountByUsername(username) == null;
     }
 
     //Getters
@@ -48,20 +51,12 @@ public class Account {
         return this.password;
     }
 
-    public String getFirstname() {
-        return this.firstname;
-    }
-
-    public String getLastname() {
-        return this.lastname;
+    public String getName() {
+        return this.name;
     }
 
     public ArrayList<Classroom> getClassrooms(){
         return this.classrooms;
-    }
-
-    public String getFullName(){
-        return this.firstname + " " + this.lastname;
     }
 
     //Setters
@@ -73,11 +68,7 @@ public class Account {
         this.password = password;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setName(String name) {
+        this.name = name;
     }
 }

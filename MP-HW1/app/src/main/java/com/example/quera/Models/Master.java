@@ -10,10 +10,11 @@ public class Master extends Account{
     }
     private String university;
 
-    public Master(String username, String password, String firstname, String lastname, String university) {
-        super(username, password, firstname, lastname);
+    public Master(String username, String password, String name, String university) {
+        super(username, password, name);
         this.university = university;
         masters.add(this);
+        //TODO save json
     }
 
     //Getters

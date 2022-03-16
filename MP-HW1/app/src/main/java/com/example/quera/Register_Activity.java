@@ -5,10 +5,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class Register_Activity extends AppCompatActivity {
@@ -28,8 +25,8 @@ public class Register_Activity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPagerAdapter.addFragment(new Student_Login_Fragment(), "Student");
-        viewPagerAdapter.addFragment(new Professor_Login_Fragment(), "Professor");
+        viewPagerAdapter.addFragment(new Student_Register_Fragment(), "Student");
+        viewPagerAdapter.addFragment(new Professor_Register_Fragment(), "Professor");
 
         viewPager.setAdapter(viewPagerAdapter);
     }

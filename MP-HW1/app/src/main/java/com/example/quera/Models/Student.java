@@ -10,10 +10,11 @@ public class Student extends Account{
     }
     private String studentID;
 
-    public Student(String username, String password, String firstname, String lastname, String studentID) {
-        super(username, password, firstname, lastname);
+    public Student(String username, String password, String name, String studentID) {
+        super(username, password, name);
         this.studentID = studentID;
         students.add(this);
+        //TODO save json
     }
 
     //Getters
