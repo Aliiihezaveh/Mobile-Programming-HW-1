@@ -52,10 +52,13 @@ public class Student_Register_Fragment extends Fragment {
                 String inputPassword = Objects.requireNonNull(password.getText()).toString();
 
                 if(Account.canRegister(inputUsername, inputName, inputPassword)){
-                    new Student(inputUsername, inputPassword, inputName, inputStudentId);
+                    Account.loggedInAccount = new Student(inputUsername, inputPassword, inputName, inputStudentId);
                     Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
                     toast.show();
-                    Intent studentDashBoardIntent = new Intent(getActivity(), StudentDashBoardActivity.class);
+                    Intent studentDashBoardIntent = new Intent(getActivity(), DashBoardActivity.class);
+                    studentDashBoardIntent.putExtra("Student Id", inputStudentId);
+                    studentDashBoardIntent.putExtra("UserName", inputName);
+                    studentDashBoardIntent.putExtra("Student", "True");
                     startActivity(studentDashBoardIntent);
                     //TODO load student dashboard page
                 }

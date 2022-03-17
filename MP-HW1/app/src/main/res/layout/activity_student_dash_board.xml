@@ -4,11 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudentDashBoardActivity"
+    tools:context=".DashBoardActivity"
     android:padding="10dp">
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/studentDashBoardRecycleView"/>
+        android:id="@+id/studentDashBoardRecycleView"
+        android:layout_below="@id/addClassButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/addClassButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add class" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/addClassButton"
+        android:text="Student Name"
+        android:id="@+id/showStudentNameText"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"/>
 
 </RelativeLayout>

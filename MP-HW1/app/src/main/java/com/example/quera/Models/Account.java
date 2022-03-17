@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Account {
     public static ArrayList<Account> accounts;
     public static Account loggedInAccount;
+    private String username;
+    private String password;
+    private String name;
+    private ArrayList<Classroom> classrooms;
 
     static {
         accounts = new ArrayList<>();
     }
 
-    private String username;
-    private String password;
-    private String name;
-    private ArrayList<Classroom> classrooms;
 
     public Account(){
         this.username = null;

@@ -3,7 +3,60 @@ package com.example.quera.Models;
 import java.util.ArrayList;
 
 public class Classroom {
-    public static ArrayList<Classroom> classrooms;
+    private static ArrayList<Classroom> classrooms;
+
+    public static ArrayList<Classroom> getClassrooms() {
+        return classrooms;
+    }
+
+
+    private String className;
+    private String professorName;
+    private String classID;
+
+    public Classroom(String className, String professorName, String classID) {
+        this.className = className;
+        this.professorName = professorName;
+        this.classID = classID;
+        classrooms.add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Classroom{" +
+                "className='" + className + '\'' +
+                ", professorName='" + professorName + '\'' +
+                ", classID='" + classID + '\'' +
+                ", name='" + name + '\'' +
+                ", master=" + master +
+                ", students=" + students +
+                ", exercises=" + exercises +
+                '}';
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getProfessorName() {
+        return professorName;
+    }
+
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
+    }
+
+    public String getClassID() {
+        return classID;
+    }
+
+    public void setClassID(String classID) {
+        this.classID = classID;
+    }
 
     static {
         classrooms = new ArrayList<>();

@@ -5,21 +5,24 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.quera.Models.Classroom;
 
 import java.util.ArrayList;
 
-public class StudentClassAdapter extends RecyclerView.Adapter<StudentClassAdapter.StudentViewHolder> {
+public class ClassroomAdapter extends RecyclerView.Adapter<ClassroomAdapter.StudentViewHolder> {
 
-    private ArrayList<StudentClass> studentClasses = new ArrayList<>();
+    private ArrayList<Classroom> classrooms = new ArrayList<>();
     private Context context;
 
-    public StudentClassAdapter(Context context) {
+    public ClassroomAdapter(Context context) {
         this.context = context;
     }
 
@@ -33,32 +36,34 @@ public class StudentClassAdapter extends RecyclerView.Adapter<StudentClassAdapte
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.studentClassName.setText(studentClasses.get(position).getClassName());
+        holder.studentClassName.setText(classrooms.get(position).getClassName());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,studentClasses.get(position).getClassName() + " Selected",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, classrooms.get(position).getClassName() + " Selected",Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return studentClasses.size();
+        return classrooms.size();
     }
 
-    public void setStudentClasses(ArrayList<StudentClass> studentClasses) {
-        this.studentClasses = studentClasses;
+    public void setStudentClasses(ArrayList<Classroom> classrooms) {
+        this.classrooms = classrooms;
         notifyDataSetChanged();
     }
 
     public class StudentViewHolder extends RecyclerView.ViewHolder{
         private TextView studentClassName;
-        private RelativeLayout parent;
+        private CardView parent;
+        private ImageView classImage;
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
             studentClassName = itemView.findViewById(R.id.textStudentClassName);
             parent = itemView.findViewById(R.id.studentClassList);
+            classImage = itemView.findViewById(R.id.classImage);
         }
     }
 }

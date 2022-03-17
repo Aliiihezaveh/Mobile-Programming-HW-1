@@ -1,5 +1,6 @@
 package com.example.quera;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Master;
-import com.example.quera.Models.Student;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
@@ -36,31 +36,35 @@ public class Professor_Register_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        registerButton = view.findViewById(R.id.studentRegisterButton);
+        registerButton = view.findViewById(R.id.professorRegisterButton);
         name = view.findViewById(R.id.professorEditTextName);
         username = view.findViewById(R.id.professorEditTextUserName);
         collage = view.findViewById(R.id.EditTextCollegeName);
         password = view.findViewById(R.id.professorEditTextPassword);
 
-//        registerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String inputName = Objects.requireNonNull(name.getText()).toString();
-//                String inputUsername = Objects.requireNonNull(username.getText()).toString();
-//                String inputCollage = Objects.requireNonNull(collage.getText()).toString();
-//                String inputPassword = Objects.requireNonNull(password.getText()).toString();
-//
-//                if(Account.canRegister(inputUsername, inputName, inputPassword)){
-//                    new Master(inputUsername, inputPassword, inputName, inputCollage);
-//                    Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
-//                    toast.show();
-//                    //TODO load professor dashboard page
-//                }
-//                else{
-//                    Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);
-//                    toast.show();
-//                }
-//            }
-//        });
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String inputName = Objects.requireNonNull(name.getText()).toString();
+                String inputUsername = Objects.requireNonNull(username.getText()).toString();
+                String inputCollage = Objects.requireNonNull(collage.getText()).toString();
+                String inputPassword = Objects.requireNonNull(password.getText()).toString();
+
+                if(Account.canRegister(inputUsername, inputName, inputPassword)){
+                    new Master(inputUsername, inputPassword, inputName, inputCollage);
+                    Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
+                    toast.show();
+                    Intent professorDashBoardIntent = new Intent(getActivity(), DashBoardActivity.class);
+                    professorDashBoardIntent.putExtra("UserName", inputName);
+                    professorDashBoardIntent.putExtra("Student", "False");
+                    startActivity(professorDashBoardIntent);
+                    //TODO load professor dashboard page
+                }
+                else{
+                    Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        });
     }
 }
