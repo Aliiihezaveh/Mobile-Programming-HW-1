@@ -1,5 +1,6 @@
 package com.example.quera;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,8 @@ public class Student_Register_Fragment extends Fragment {
                     new Student(inputUsername, inputPassword, inputName, inputStudentId);
                     Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
                     toast.show();
+                    Intent studentDashBoardIntent = new Intent(getActivity(), StudentDashBoardActivity.class);
+                    startActivity(studentDashBoardIntent);
                     //TODO load student dashboard page
                 }
                 else{

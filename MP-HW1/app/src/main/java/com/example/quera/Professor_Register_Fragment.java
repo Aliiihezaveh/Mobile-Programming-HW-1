@@ -42,25 +42,25 @@ public class Professor_Register_Fragment extends Fragment {
         collage = view.findViewById(R.id.EditTextCollegeName);
         password = view.findViewById(R.id.professorEditTextPassword);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String inputName = Objects.requireNonNull(name.getText()).toString();
-                String inputUsername = Objects.requireNonNull(username.getText()).toString();
-                String inputCollage = Objects.requireNonNull(collage.getText()).toString();
-                String inputPassword = Objects.requireNonNull(password.getText()).toString();
-
-                if(Account.canRegister(inputUsername, inputName, inputPassword)){
-                    new Master(inputUsername, inputPassword, inputName, inputCollage);
-                    Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
-                    toast.show();
-                    //TODO load professor dashboard page
-                }
-                else{
-                    Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);
-                    toast.show();
-                }
-            }
-        });
+//        registerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String inputName = Objects.requireNonNull(name.getText()).toString();
+//                String inputUsername = Objects.requireNonNull(username.getText()).toString();
+//                String inputCollage = Objects.requireNonNull(collage.getText()).toString();
+//                String inputPassword = Objects.requireNonNull(password.getText()).toString();
+//
+//                if(Account.canRegister(inputUsername, inputName, inputPassword)){
+//                    new Master(inputUsername, inputPassword, inputName, inputCollage);
+//                    Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
+//                    toast.show();
+//                    //TODO load professor dashboard page
+//                }
+//                else{
+//                    Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);
+//                    toast.show();
+//                }
+//            }
+//        });
     }
 }

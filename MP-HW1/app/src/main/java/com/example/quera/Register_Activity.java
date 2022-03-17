@@ -5,6 +5,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -29,5 +32,6 @@ public class Register_Activity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new Professor_Register_Fragment(), "Professor");
 
         viewPager.setAdapter(viewPagerAdapter);
+
     }
 }
