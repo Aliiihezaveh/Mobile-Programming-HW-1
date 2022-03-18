@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Classroom;
@@ -19,44 +20,27 @@ import java.util.ArrayList;
 
 public class DashBoardActivity extends AppCompatActivity {
 
-    private RecyclerView studentDashBoardRecycleView;
-    private EditText studentNameEditText;
-    private Button addClassButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_dash_board);
 
-        Intent intent = getIntent();
-        String userName = intent.getStringExtra("UserName");
-        Boolean isStudent;
-        Account account;
-        if(intent.getStringExtra("Student").equals("True")) {
-            isStudent = Boolean.TRUE;
-            account = Student.getStudentByUsername(userName);
+        Account account = Account.loggedInAccount;
+        Boolean isStudent = account.getClass().getName().equals("com.example.quera.Models.Student")? Boolean.TRUE:Boolean.FALSE;
+
+        EditText studentNameEditText = findViewById(R.id.showStudentNameText);
+        RecyclerView studentDashBoardRecycleView = findViewById(R.id.studentDashBoardRecycleView);
+        Button addClassButton = findViewById(R.id.addClassButton);
+
+        if(!isStudent){
+            addClassButton.setText("Create Class");
         }
-        else {
-            isStudent = Boolean.FALSE;
-            account = Master.getMasterByUsername(userName);
-        }
-        studentNameEditText = findViewById(R.id.showStudentNameText);
-        studentNameEditText.setText(userName);
-        studentDashBoardRecycleView = findViewById(R.id.studentDashBoardRecycleView);
-        addClassButton = findViewById(R.id.addClassButton);
 
-        ArrayList<Classroom> classes;
-        if(account.getClassrooms() != null)
-            classes = account.getClassrooms();
-        else
-            classes = new ArrayList<>();
+        studentNameEditText.setText(account.getName());
 
-        new Classroom("Mobile Programming", "Dr", "14");
-        classes.add(new Classroom("Mobile Programming", "Dr", "14"));
-        classes.add(new Classroom("Artificial intelligence", "Dr", "16"));
-
-
+        ArrayList<Classroom> classes = new ArrayList<>(account.getClassrooms());
         ClassroomAdapter adapter = new ClassroomAdapter(this);
+
         adapter.setStudentClasses(classes);
 
 
@@ -64,10 +48,14 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isStudent) {
-                    classes.clear();
-                    for (Classroom classroom : Classroom.getClassrooms())
-                        classes.add(classroom);
-                    adapter.setStudentClasses(classes);
+                    Intent allClassIntent = new Intent(DashBoardActivity.this, ClassActivity.class);
+                    startActivity(allClassIntent);
+                    finish();
+                }
+                else {
+                    Intent createClassIntent = new Intent(DashBoardActivity.this, CreateClassActivity.class);
+                    startActivity(createClassIntent);
+                    finish();
                 }
             }
         });

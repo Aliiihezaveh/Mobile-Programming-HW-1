@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quera.Models.Account;
 import com.example.quera.Models.Classroom;
 
 import java.util.ArrayList;
@@ -40,7 +41,10 @@ public class ClassroomAdapter extends RecyclerView.Adapter<ClassroomAdapter.Stud
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, classrooms.get(position).getClassName() + " Selected",Toast.LENGTH_SHORT).show();
+                if(!Account.loggedInAccount.getClassrooms().contains(classrooms.get(position))){
+                    Account.loggedInAccount.addClassrooms(classrooms.get(position));
+                    Toast.makeText(context, "class added",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

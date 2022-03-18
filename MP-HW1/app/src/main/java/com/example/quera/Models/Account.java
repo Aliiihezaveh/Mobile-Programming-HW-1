@@ -10,6 +10,10 @@ public class Account {
     private String name;
     private ArrayList<Classroom> classrooms;
 
+    public void addClassrooms(Classroom classroom) {
+        classrooms.add(classroom);
+    }
+
     static {
         accounts = new ArrayList<>();
     }
@@ -84,4 +88,5 @@ public class Account {
     public void setName(String name) {
         this.name = name;
     }
+
 }

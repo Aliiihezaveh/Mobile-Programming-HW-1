@@ -12,12 +12,23 @@ public class Classroom {
 
     private String className;
     private String professorName;
-    private String classID;
 
-    public Classroom(String className, String professorName, String classID) {
+    public int getClassID() {
+        return classID;
+    }
+
+    public void setClassID(int classID) {
+        this.classID = classID;
+    }
+
+    private int classID;
+    private static int counter = 0;
+
+    public Classroom(String className, String professorName) {
         this.className = className;
         this.professorName = professorName;
-        this.classID = classID;
+        this.classID = counter;
+        counter += 1;
         classrooms.add(this);
     }
 
@@ -50,13 +61,6 @@ public class Classroom {
         this.professorName = professorName;
     }
 
-    public String getClassID() {
-        return classID;
-    }
-
-    public void setClassID(String classID) {
-        this.classID = classID;
-    }
 
     static {
         classrooms = new ArrayList<>();

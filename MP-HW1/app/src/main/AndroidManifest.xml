@@ -10,9 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quera">
         <activity
-            android:name=".DashBoardActivity"
-            android:parentActivityName=".Register_Activity"
+            android:name=".CreateClassActivity"
             android:exported="false" />
+        <activity
+            android:name=".ClassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DashBoardActivity"
+            android:exported="false"
+            android:parentActivityName=".Register_Activity" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
