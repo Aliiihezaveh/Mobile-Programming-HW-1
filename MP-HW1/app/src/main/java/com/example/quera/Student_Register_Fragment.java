@@ -20,7 +20,6 @@ import java.util.Objects;
 
 public class Student_Register_Fragment extends Fragment {
 
-    private Button registerButton;
     private TextInputEditText name;
     private TextInputEditText username;
     private TextInputEditText studentId;
@@ -36,7 +35,7 @@ public class Student_Register_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        registerButton = view.findViewById(R.id.studentRegisterButton);
+        Button registerButton = view.findViewById(R.id.studentRegisterButton);
         name = view.findViewById(R.id.studentEditTextName);
         username = view.findViewById(R.id.studentEditTextUserName);
         studentId = view.findViewById(R.id.EditTextStudentNumber);
@@ -59,8 +58,8 @@ public class Student_Register_Fragment extends Fragment {
                     studentDashBoardIntent.putExtra("Student Id", inputStudentId);
                     studentDashBoardIntent.putExtra("UserName", inputName);
                     studentDashBoardIntent.putExtra("Student", "True");
+                    Account.loggedInAccount = Account.getAccountByUsername(inputUsername);
                     startActivity(studentDashBoardIntent);
-                    //TODO load student dashboard page
                 }
                 else{
                     Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);

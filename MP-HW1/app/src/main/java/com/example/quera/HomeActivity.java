@@ -9,21 +9,27 @@ import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button loginButton;
-    private Button registerButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        loginButton = findViewById(R.id.loginButton);
-        registerButton = findViewById(R.id.registerButton);
+        Button loginButton = findViewById(R.id.loginButton);
+        Button registerButton = findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent loginIntent = new Intent(HomeActivity.this, Register_Activity.class);
+                startActivity(loginIntent);
+                finish();
+            }
+        });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent loginIntent = new Intent(HomeActivity.this, Login_Activity.class);
                 startActivity(loginIntent);
                 finish();
             }

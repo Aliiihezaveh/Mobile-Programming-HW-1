@@ -35,6 +35,19 @@ public class Account {
         return getAccountByUsername(username) == null;
     }
 
+    public static boolean canLogin(String username, String password) {
+        if(Account.getAccountByUsername(username) == null) return false;
+        return Account.getAccountByUsername(username).getPassword().equals(password);
+    }
+
+    public static boolean isStudent(String username){
+        return Student.getStudentByUsername(username) != null;
+    }
+
+    public static boolean isMaster(String username){
+        return Master.getMasterByUsername(username) != null;
+    }
+
     //Getters
     public static Account getAccountByUsername(String username) {
         for (Account account : accounts)

@@ -57,8 +57,8 @@ public class Professor_Register_Fragment extends Fragment {
                     Intent professorDashBoardIntent = new Intent(getActivity(), DashBoardActivity.class);
                     professorDashBoardIntent.putExtra("UserName", inputName);
                     professorDashBoardIntent.putExtra("Student", "False");
+                    //Account.loggedInAccount = Account.getAccountByUsername(inputUsername);
                     startActivity(professorDashBoardIntent);
-                    //TODO load professor dashboard page
                 }
                 else{
                     Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);

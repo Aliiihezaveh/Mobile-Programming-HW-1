@@ -13,16 +13,13 @@ import com.google.android.material.tabs.TabLayout;
 
 public class Register_Activity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        tabLayout = findViewById(R.id.loginTabLayout);
-        viewPager = findViewById(R.id.loginViewPager);
+        TabLayout tabLayout = findViewById(R.id.loginTabLayout);
+        ViewPager viewPager = findViewById(R.id.loginViewPager);
 
 
         tabLayout.setupWithViewPager(viewPager);
