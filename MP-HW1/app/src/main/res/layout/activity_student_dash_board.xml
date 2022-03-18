@@ -8,12 +8,12 @@
     android:padding="10dp">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="10dp"
+        android:id="@+id/studentDashBoardRecycleView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/studentDashBoardRecycleView"
         android:layout_below="@id/addClassButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:id="@+id/addClassButton"

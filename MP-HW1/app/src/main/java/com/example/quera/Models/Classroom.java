@@ -24,7 +24,16 @@ public class Classroom {
     private int classID;
     private static int counter = 0;
 
+    public ArrayList<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(ArrayList<Exercise> exercises) {
+        this.exercises = exercises;
+    }
+
     public Classroom(String className, String professorName) {
+        exercises = new ArrayList<>();
         this.className = className;
         this.professorName = professorName;
         this.classID = counter;

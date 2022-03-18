@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExerciseActivity"
+    android:padding="10dp">
+
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/classNameTextView"
+    android:layout_centerHorizontal="true"
+    android:textStyle="bold|italic"
+    android:layout_marginTop="10dp"
+    android:textSize="16sp"
+    android:text="Class Name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/professorNameTextView"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:layout_below="@id/classNameTextView"
+        android:text="Professor Name"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/exerciseRecycleView"
+        android:layout_below="@id/professorNameTextView"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

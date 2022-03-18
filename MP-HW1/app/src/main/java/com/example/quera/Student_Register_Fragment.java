@@ -52,18 +52,12 @@ public class Student_Register_Fragment extends Fragment {
 
                 if(Account.canRegister(inputUsername, inputName, inputPassword)){
                     Account.loggedInAccount = new Student(inputUsername, inputPassword, inputName, inputStudentId);
-                    Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
-                    toast.show();
+                    Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG).show();
                     Intent studentDashBoardIntent = new Intent(getActivity(), DashBoardActivity.class);
-                    studentDashBoardIntent.putExtra("Student Id", inputStudentId);
-                    studentDashBoardIntent.putExtra("UserName", inputName);
-                    studentDashBoardIntent.putExtra("Student", "True");
-                    Account.loggedInAccount = Account.getAccountByUsername(inputUsername);
                     startActivity(studentDashBoardIntent);
                 }
                 else{
-                    Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);
-                    toast.show();
+                    Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG).show();
                 }
             }
         });

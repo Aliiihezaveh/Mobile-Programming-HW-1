@@ -51,18 +51,13 @@ public class Professor_Register_Fragment extends Fragment {
                 String inputPassword = Objects.requireNonNull(password.getText()).toString();
 
                 if(Account.canRegister(inputUsername, inputName, inputPassword)){
-                    new Master(inputUsername, inputPassword, inputName, inputCollage);
-                    Toast toast = Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG);
-                    toast.show();
+                    Account.loggedInAccount = new Master(inputUsername, inputPassword, inputName, inputCollage);
+                    Toast.makeText(getActivity(), "wellCome to quera",Toast.LENGTH_LONG).show();
                     Intent professorDashBoardIntent = new Intent(getActivity(), DashBoardActivity.class);
-                    professorDashBoardIntent.putExtra("UserName", inputName);
-                    professorDashBoardIntent.putExtra("Student", "False");
-                    //Account.loggedInAccount = Account.getAccountByUsername(inputUsername);
                     startActivity(professorDashBoardIntent);
                 }
                 else{
-                    Toast toast = Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG);
-                    toast.show();
+                    Toast.makeText(getActivity(), "Register failed!!!",Toast.LENGTH_LONG).show();
                 }
             }
         });
