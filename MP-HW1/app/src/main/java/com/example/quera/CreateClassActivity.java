@@ -27,10 +27,10 @@ public class CreateClassActivity extends AppCompatActivity {
         createClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Account.loggedInAccount.addClassrooms(new Classroom(className.getText().toString(), Account.loggedInAccount.getName()));
+                Classroom classroom = new Classroom(className.getText().toString(), Account.loggedInAccount.getName());
+                Account.loggedInAccount.addClassrooms(classroom);
                 Intent dashBoardIntent = new Intent(CreateClassActivity.this, DashBoardActivity.class);
                 startActivity(dashBoardIntent);
-                finish();
             }
         });
     }

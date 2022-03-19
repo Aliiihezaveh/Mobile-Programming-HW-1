@@ -10,8 +10,13 @@ public class Classroom {
     }
 
 
+    private int classID;
+    private static int counter = 0;
     private String className;
     private String professorName;
+    private Master master;
+    private ArrayList<Student> students;
+    private ArrayList<Exercise> exercises;
 
     public int getClassID() {
         return classID;
@@ -21,15 +26,13 @@ public class Classroom {
         this.classID = classID;
     }
 
-    private int classID;
-    private static int counter = 0;
 
     public ArrayList<Exercise> getExercises() {
         return exercises;
     }
 
-    public void setExercises(ArrayList<Exercise> exercises) {
-        this.exercises = exercises;
+    public void addExercises(Exercise exercise) {
+        this.exercises.add(exercise);
     }
 
     public Classroom(String className, String professorName) {
@@ -39,19 +42,6 @@ public class Classroom {
         this.classID = counter;
         counter += 1;
         classrooms.add(this);
-    }
-
-    @Override
-    public String toString() {
-        return "Classroom{" +
-                "className='" + className + '\'' +
-                ", professorName='" + professorName + '\'' +
-                ", classID='" + classID + '\'' +
-                ", name='" + name + '\'' +
-                ", master=" + master +
-                ", students=" + students +
-                ", exercises=" + exercises +
-                '}';
     }
 
     public String getClassName() {
@@ -75,29 +65,20 @@ public class Classroom {
         classrooms = new ArrayList<>();
     }
 
-    private String name;
-    private Master master;
-    private ArrayList<Student> students;
-    private ArrayList<Exercise> exercises;
-
-    public Classroom(String name, Master master){
-        this.name = name;
-        this.master = master;
-        students = new ArrayList<>();
-        exercises = new ArrayList<>();
-        classrooms.add(this);
-    }
+//    public Classroom(String name, Master master){
+//        this.name = name;
+//        this.master = master;
+//        students = new ArrayList<>();
+//        exercises = new ArrayList<>();
+//        classrooms.add(this);
+//    }
 
     //Getters
-    public Classroom getClassroomByName(String name){
+    public static Classroom getClassroomByName(String name){
         for (Classroom classroom : classrooms)
-            if (classroom.getName().equals(name))
+            if (classroom.getClassName().equals(name))
                 return classroom;
         return null;
-    }
-
-    public String getName(){
-        return this.name;
     }
 
     public Master getMaster(){
@@ -109,9 +90,6 @@ public class Classroom {
     }
 
     //Setters
-    public void setName(String name){
-        this.name = name;
-    }
 
     public void setMaster(Master master){
         this.master = master;

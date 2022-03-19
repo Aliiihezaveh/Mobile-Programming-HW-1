@@ -9,6 +9,7 @@ public class Account {
     private String password;
     private String name;
     private ArrayList<Classroom> classrooms;
+    private ArrayList<Exercise> exercises;
 
     public void addClassrooms(Classroom classroom) {
         classrooms.add(classroom);
@@ -31,6 +32,7 @@ public class Account {
         this.password = password;
         this.name = name;
         this.classrooms = new ArrayList<>();
+        this.exercises = new ArrayList<>();
         accounts.add(this);
     }
 
@@ -89,4 +91,11 @@ public class Account {
         this.name = name;
     }
 
+    public Exercise getExercisesByName(String exerciseName) {
+        return Exercise.getExercisesByName(exerciseName);
+    }
+
+    public void addExercises(Exercise exercise) {
+        this.exercises.add(exercise);
+    }
 }

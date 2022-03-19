@@ -45,7 +45,7 @@ public class ClassroomAdapter extends RecyclerView.Adapter<ClassroomAdapter.Stud
                 if(!Account.loggedInAccount.getClassrooms().contains(classrooms.get(position))){
                     Account.loggedInAccount.addClassrooms(classrooms.get(position));
                     Toast.makeText(context, "class added",Toast.LENGTH_SHORT).show();
-                }else if(Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Student")) {
+                }else {
                     Intent classIntent = new Intent(context, ExerciseActivity.class);
                     classIntent.putExtra("ClassName", classrooms.get(position).getClassName());
                     classIntent.putExtra("ProfessorName", classrooms.get(position).getProfessorName());

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quera">
         <activity
+            android:name=".CreateExerciseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExercisePageActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExerciseActivity"
             android:exported="false" />
         <activity
