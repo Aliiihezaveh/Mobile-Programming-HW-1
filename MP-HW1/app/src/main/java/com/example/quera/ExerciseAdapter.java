@@ -44,6 +44,11 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
                     studentExerciseIntent.putExtra("ExerciseName", exercises.get(position).getName());
                     //studentExerciseIntent.putExtra("ClassName", TODO);
                     context.startActivity(studentExerciseIntent);
+                }else{
+                    Intent answerExerciseIntent = new Intent(context, AnswerActivity.class);
+                    answerExerciseIntent.putExtra("ClassName", exercises.get(position).getClassroom().getClassName());
+                    answerExerciseIntent.putExtra("ExerciseName", exercises.get(position).getName());
+                    context.startActivity(answerExerciseIntent);
                 }
             }
         });

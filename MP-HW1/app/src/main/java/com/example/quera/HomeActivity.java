@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         Classroom classroom = new Classroom("class1", "pr1");
-        Exercise exercise = new Exercise("hw1");
+        Exercise exercise = new Exercise(classroom, "hw1");
         classroom.addExercises(exercise);
         new Student("a", "a", "ali", "1234");
     }

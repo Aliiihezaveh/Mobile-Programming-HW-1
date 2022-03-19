@@ -13,7 +13,8 @@ public class Exercise {
     private String question, answer;
     private Classroom classroom;
 
-    public Exercise(String name) {
+    public Exercise(Classroom classroom, String name) {
+        this.classroom = classroom;
         answers = new ArrayList<>();
         this.name = name;
         this.id = counter;
@@ -32,6 +33,14 @@ public class Exercise {
     public static Exercise getExercisesByName(String exerciseName) {
         for(Exercise exercise : exercises){
             if(exercise.getName().equals(exerciseName))
+                return exercise;
+        }
+        return null;
+    }
+
+    public static Exercise getExercisesByClassName(Classroom classroom) {
+        for(Exercise exercise : exercises){
+            if(exercise.getClassroom().getClassName().equals(classroom.getClassName()))
                 return exercise;
         }
         return null;
@@ -85,6 +94,14 @@ public class Exercise {
             if(answer.getStudent().equals(student)) return answer;
         }
         return null;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
     }
     //TODO
 }

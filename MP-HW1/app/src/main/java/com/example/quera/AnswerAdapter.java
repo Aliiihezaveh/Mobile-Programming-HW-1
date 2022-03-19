@@ -1,6 +1,8 @@
 package com.example.quera;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +34,15 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.AnswerView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AnswerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AnswerViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.studentName.setText(answers.get(position).getStudent().getName());
-        holder.studentName.setText(answers.get(position).getScore());
+        holder.studentScore.setText(answers.get(position).getScore());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, AnswerScoreActivity.class);
+                intent.putExtra("StudentName", answers.get(position).getStudent().getName());
+                context.startActivity(intent);
             }
         });
     }

@@ -37,7 +37,7 @@ public class CreateExerciseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent exerciseIntent = new Intent(CreateExerciseActivity.this, ExerciseActivity.class);
                 if (classroom != null) {
-                    classroom.addExercises(new Exercise(exerciseName.getText().toString()));
+                    classroom.addExercises(new Exercise(classroom, exerciseName.getText().toString()));
                     exerciseIntent.putExtra("ClassName",classroom.getClassName());
                     exerciseIntent.putExtra("ProfessorName",classroom.getProfessorName());
                 }
