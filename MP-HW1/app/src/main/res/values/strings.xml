@@ -11,4 +11,7 @@
     <string name="student_number">Student Number</string>
     <string name="college_name">college Name</string>
     <string name="create">Create</string>
+    <string name="submit">Submit</string>
+    <string name="answer">answer</string>
+    <string name="score">Score :</string>
 </resources>

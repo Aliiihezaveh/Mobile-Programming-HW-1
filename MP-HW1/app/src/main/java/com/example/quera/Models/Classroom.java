@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Classroom {
     private static ArrayList<Classroom> classrooms;
-
     public static ArrayList<Classroom> getClassrooms() {
         return classrooms;
     }

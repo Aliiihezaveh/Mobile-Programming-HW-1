@@ -18,6 +18,7 @@ public class Exercise {
         this.name = name;
         this.id = counter;
         counter +=1;
+        exercises.add(this);
     }
 
     public static Exercise getExercisesById(int exerciseId) {
@@ -41,7 +42,7 @@ public class Exercise {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -78,6 +79,12 @@ public class Exercise {
 
     public void addAnswers(Answer answer) {
         this.answers.add(answer);
+    }
+    public Answer getAnswerByStudent(Student student){
+        for (Answer answer:answers){
+            if(answer.getStudent().equals(student)) return answer;
+        }
+        return null;
     }
     //TODO
 }

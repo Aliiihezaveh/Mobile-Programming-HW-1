@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.quera.Models.Classroom;
+import com.example.quera.Models.Exercise;
+import com.example.quera.Models.Student;
+
 public class HomeActivity extends AppCompatActivity {
 
     @Override
@@ -34,5 +38,12 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Classroom classroom = new Classroom("class1", "pr1");
+        Exercise exercise = new Exercise("hw1");
+        classroom.addExercises(exercise);
+        new Student("a", "a", "ali", "1234");
     }
+
+
 }

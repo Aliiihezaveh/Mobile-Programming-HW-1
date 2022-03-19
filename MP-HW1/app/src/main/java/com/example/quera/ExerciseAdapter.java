@@ -1,5 +1,6 @@
 package com.example.quera;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -33,13 +34,15 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ExerciseViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.exerciseName.setText(exercises.get(position).getName());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Student")){
                     Intent studentExerciseIntent = new Intent(context, ExercisePageActivity.class);
+                    studentExerciseIntent.putExtra("ExerciseName", exercises.get(position).getName());
+                    //studentExerciseIntent.putExtra("ClassName", TODO);
                     context.startActivity(studentExerciseIntent);
                 }
             }
