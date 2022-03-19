@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
 
+import com.example.quera.Models.Classroom;
+import com.example.quera.Models.Exercise;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
