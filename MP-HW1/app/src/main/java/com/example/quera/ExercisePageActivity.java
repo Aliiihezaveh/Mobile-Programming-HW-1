@@ -45,11 +45,20 @@ public class ExercisePageActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
-                Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, 0, Answer));
-                Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
-                startActivity(intent);
-                finish();
+                if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent((Student) Account.loggedInAccount) == null){
+                    String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
+                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, 0, Answer));
+                    Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
+                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent((Student) Account.loggedInAccount).editAnswer(Answer);
+                    Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
