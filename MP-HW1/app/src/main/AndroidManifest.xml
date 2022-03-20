@@ -32,8 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".DashBoardActivity"
-            android:exported="false"
-            android:parentActivityName=".Register_Activity" />
+            android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />

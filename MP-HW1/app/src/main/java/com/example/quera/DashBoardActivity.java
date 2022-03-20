@@ -28,6 +28,7 @@ public class DashBoardActivity extends AppCompatActivity {
         EditText studentNameEditText = findViewById(R.id.showStudentNameText);
         RecyclerView studentDashBoardRecycleView = findViewById(R.id.studentDashBoardRecycleView);
         Button addClassButton = findViewById(R.id.addClassButton);
+        Button backToRegisterButton = findViewById(R.id.backToRegisterButton);
 
         if(!isStudent){
             addClassButton.setText("Create Class");
@@ -54,6 +55,15 @@ public class DashBoardActivity extends AppCompatActivity {
                     startActivity(createClassIntent);
                     finish();
                 }
+            }
+        });
+
+        backToRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerIntent = new Intent(DashBoardActivity.this, Register_Activity.class);
+                startActivity(registerIntent);
+                finish();
             }
         });
 
