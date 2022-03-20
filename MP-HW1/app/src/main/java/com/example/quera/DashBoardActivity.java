@@ -9,12 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Classroom;
-import com.example.quera.Models.Master;
-import com.example.quera.Models.Student;
 
 import java.util.ArrayList;
 
@@ -48,7 +45,7 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isStudent) {
-                    Intent allClassIntent = new Intent(DashBoardActivity.this, ClassActivity.class);
+                    Intent allClassIntent = new Intent(DashBoardActivity.this, ClassroomActivity.class);
                     startActivity(allClassIntent);
                     finish();
                 }

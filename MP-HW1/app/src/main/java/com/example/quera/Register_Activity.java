@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,16 @@ public class Register_Activity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.loginTabLayout);
         ViewPager viewPager = findViewById(R.id.loginViewPager);
+        Button homeButton = findViewById(R.id.backToHomeButton);
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeIntent = new Intent(Register_Activity.this, HomeActivity.class);
+                startActivity(homeIntent);
+                finish();
+            }
+        });
 
 
         tabLayout.setupWithViewPager(viewPager);

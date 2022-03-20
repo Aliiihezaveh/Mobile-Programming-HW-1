@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.example.quera.Models.Classroom;
 import java.util.ArrayList;
 
-public class ClassActivity extends AppCompatActivity {
+public class ClassroomActivity extends AppCompatActivity {
     private Button backToClassButton;
 
     @Override
@@ -26,7 +26,7 @@ public class ClassActivity extends AppCompatActivity {
         backToClassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent dashBoardIntent = new Intent(ClassActivity.this, DashBoardActivity.class);
+                Intent dashBoardIntent = new Intent(ClassroomActivity.this, DashBoardActivity.class);
                 startActivity(dashBoardIntent);
                 finish();
             }

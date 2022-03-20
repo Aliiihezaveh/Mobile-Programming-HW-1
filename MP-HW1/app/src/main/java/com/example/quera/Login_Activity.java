@@ -24,6 +24,7 @@ public class Login_Activity extends AppCompatActivity {
         TextInputEditText inputUsername = findViewById(R.id.editTextUsername);
         TextInputEditText inputPassword = findViewById(R.id.editTextPassword);
         Button loginButton = findViewById(R.id.loginButton);
+        Button homeButton = findViewById(R.id.homeReturnInLoginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +40,15 @@ public class Login_Activity extends AppCompatActivity {
                 else{
                     Toast.makeText(Login_Activity.this, "Wrong info!!!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeIntent = new Intent(Login_Activity.this, HomeActivity.class);
+                startActivity(homeIntent);
+                finish();
             }
         });
     }

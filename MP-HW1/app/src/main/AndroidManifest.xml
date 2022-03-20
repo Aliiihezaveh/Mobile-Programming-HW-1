@@ -28,7 +28,7 @@
             android:name=".CreateClassActivity"
             android:exported="false" />
         <activity
-            android:name=".ClassActivity"
+            android:name=".ClassroomActivity"
             android:exported="false" />
         <activity
             android:name=".DashBoardActivity"
