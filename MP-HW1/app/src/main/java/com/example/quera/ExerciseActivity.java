@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ public class ExerciseActivity extends AppCompatActivity {
         ExerciseAdapter adapter = new ExerciseAdapter(this);
         TextView className = findViewById(R.id.classNameTextView);
         TextView professorName = findViewById(R.id.professorNameTextView);
+        Button enterExercise = findViewById(R.id.enterExerciseByNameButton);
+        EditText exerciseNameEditText = findViewById(R.id.nameOfExerciseEditText);
         createExerciseButton = findViewById(R.id.MasterCreateExercise);
         Intent intent = getIntent();
         String nameOfTheClass = intent.getStringExtra("ClassName");
@@ -47,13 +50,37 @@ public class ExerciseActivity extends AppCompatActivity {
         createExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Student")){
+                if (Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Student")) {
                     Toast.makeText(getApplicationContext(), "You can't create exercise", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Intent createExerciseIntent = new Intent(ExerciseActivity.this, CreateExerciseActivity.class);
                     createExerciseIntent.putExtra("ClassName", nameOfTheClass);
                     startActivity(createExerciseIntent);
                     finish();
+                }
+            }
+        });
+
+        enterExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Student")) {
+                    for (Exercise exercise : exercises) {
+                        if (exercise.getName().equals(exerciseNameEditText.getText().toString())) {
+                            Intent studentExerciseIntent = new Intent(ExerciseActivity.this, ExercisePageActivity.class);
+                            studentExerciseIntent.putExtra("ExerciseName", exercise.getName());
+                            startActivity(studentExerciseIntent);
+                        }
+                    }
+                }else {
+                    for (Exercise exercise : exercises) {
+                        if (exercise.getName().equals(exerciseNameEditText.getText().toString())) {
+                            Intent studentExerciseIntent = new Intent(ExerciseActivity.this, AnswerActivity.class);
+                            studentExerciseIntent.putExtra("ExerciseName", exercise.getName());
+                            studentExerciseIntent.putExtra("ClassName",nameOfTheClass);
+                            startActivity(studentExerciseIntent);
+                        }
+                    }
                 }
             }
         });

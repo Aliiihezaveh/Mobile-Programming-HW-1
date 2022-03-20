@@ -13,6 +13,22 @@
         android:text="Create Exercise"
         android:id="@+id/MasterCreateExercise"/>
 
+
+    <EditText
+        android:id="@+id/nameOfExerciseEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/MasterCreateExercise"
+        android:hint="exercise name" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/nameOfExerciseEditText"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/enterExerciseByNameButton"
+        android:text="Enter"/>
+
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
