@@ -80,6 +80,13 @@ public class Classroom {
         return null;
     }
 
+    public static Classroom getClassroomByID(int id){
+        for (Classroom classroom : classrooms)
+            if (classroom.getClassID() == id)
+                return classroom;
+        return null;
+    }
+
     public Master getMaster(){
         return this.master;
     }

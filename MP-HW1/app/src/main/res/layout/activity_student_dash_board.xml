@@ -20,12 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="add class" />
+
     <Button
+        android:id="@+id/backToRegisterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/addClassButton"
-        android:id="@+id/backToRegisterButton"
-        android:text="Back"/>
+        android:text="Back" />
 
     <EditText
         android:layout_width="wrap_content"
