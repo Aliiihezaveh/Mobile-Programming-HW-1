@@ -3,12 +3,12 @@ package com.example.quera.Models;
 import java.util.ArrayList;
 
 public class Answer {
+    private static ArrayList<Answer> answers = new ArrayList<>();
     private Student student;
     private int score;
     private String answer;
     private Classroom classroom;
     private Exercise exercise;
-    private static ArrayList<Answer> answers = new ArrayList<>();
 
     public static ArrayList<Answer> getAnswers() {
         return answers;

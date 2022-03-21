@@ -18,29 +18,29 @@ public class Exercise {
         answers = new ArrayList<>();
         this.name = name;
         this.id = counter;
-        counter +=1;
+        counter += 1;
         exercises.add(this);
     }
 
     public static Exercise getExercisesById(int exerciseId) {
-        for(Exercise exercise : exercises){
-            if(exercise.getId() == exerciseId)
+        for (Exercise exercise : exercises) {
+            if (exercise.getId() == exerciseId)
                 return exercise;
         }
         return null;
     }
 
     public static Exercise getExercisesByName(String exerciseName) {
-        for(Exercise exercise : exercises){
-            if(exercise.getName().equals(exerciseName))
+        for (Exercise exercise : exercises) {
+            if (exercise.getName().equals(exerciseName))
                 return exercise;
         }
         return null;
     }
 
     public static Exercise getExercisesByClassName(Classroom classroom) {
-        for(Exercise exercise : exercises){
-            if(exercise.getClassroom().getClassName().equals(classroom.getClassName()))
+        for (Exercise exercise : exercises) {
+            if (exercise.getClassroom().getClassName().equals(classroom.getClassName()))
                 return exercise;
         }
         return null;
@@ -89,9 +89,10 @@ public class Exercise {
     public void addAnswers(Answer answer) {
         this.answers.add(answer);
     }
-    public Answer getAnswerByStudent(String student){
-        for (Answer answer:answers){
-            if(answer.getStudent().getName().equals(student)) return answer;
+
+    public Answer getAnswerByStudent(String student) {
+        for (Answer answer : answers) {
+            if (answer.getStudent().getName().equals(student)) return answer;
         }
         return null;
     }

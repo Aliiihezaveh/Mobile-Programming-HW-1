@@ -3,35 +3,20 @@ package com.example.quera.Models;
 import java.util.ArrayList;
 
 public class Classroom {
-    private static ArrayList<Classroom> classrooms;
-    public static ArrayList<Classroom> getClassrooms() {
-        return classrooms;
-    }
-
+    private static ArrayList<Classroom> classrooms = new ArrayList<>();
+    private static int counter = 0;
 
     private int classID;
-    private static int counter = 0;
     private String className;
     private String professorName;
     private Master master;
     private ArrayList<Student> students;
     private ArrayList<Exercise> exercises;
 
-    public int getClassID() {
-        return classID;
-    }
 
-    public void setClassID(int classID) {
-        this.classID = classID;
-    }
-
-
-    public ArrayList<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void addExercises(Exercise exercise) {
-        this.exercises.add(exercise);
+    public Classroom() {
+        this.className = null;
+        this.professorName = null;
     }
 
     public Classroom(String className, String professorName) {
@@ -41,6 +26,78 @@ public class Classroom {
         this.classID = counter;
         counter += 1;
         classrooms.add(this);
+    }
+
+    public String serialize() {
+        ArrayList<String> studentsUsernames = new ArrayList<>();
+        for (Student student : students)
+            studentsUsernames.add(student.getUsername());
+        String studentUsernamesSerialized = (new Gson()).toJson(studentsUsernames);
+        ClassroomDeepSerialized classroomDeepSerialized = new ClassroomDeepSerialized(this.classID, this.className, this.professorName, studentUsernamesSerialized);
+        return (new Gson()).toJson(classroomDeepSerialized);
+    } //complete
+
+    public static Classroom deserialize(String classroomSerialized) {
+        ClassroomDeepSerialized classroomDeepSerialized = (new Gson()).fromJson(classroomSerialized, ClassroomDeepSerialized.class);
+
+        Type collectionType = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        ArrayList<String> studentsUsernames = (new Gson()).fromJson(classroomDeepSerialized.studentsUsernamesSerialized, collectionType);
+
+        Classroom output = new Classroom();
+        output.setClassID(classroomDeepSerialized.classID);
+        output.setClassName(classroomDeepSerialized.className);
+        output.setProfessorName(classroomDeepSerialized.profName);
+        output.students = new ArrayList<();
+        for (String username : studentsUsernames) {
+            output.students.add(Student.getStudentByUsername(username));
+            Student.getStudentByUsername(username).classrooms.add(output);
+        }
+        return output;
+    } //complete
+
+    public static String saveClassrooms() {
+        synchronized (classrooms) {
+            for (Classroom classroom : classrooms) {
+                String classroomFilePath = "src/main/resources/classrooms/" + classroom.getClassID() + ".json";
+                File classroomFile = new File(classroomFilePath);
+                try {
+                    FileWriter writer = new FileWriter(classroomFile.getPath(), false);
+                    String jsonData = classroom.serialize();
+                    writer.write(jsonData);
+                    writer.close();
+                } catch (IOException e) {
+                    return "Can't parse classrooms JSON files";
+                }
+            }
+            return "Classrooms data saved successfully";
+        }
+    } //complete
+
+    public static synchronized String initializeClassrooms() {
+        if (classrooms.size() == 0) {
+            synchronized (classrooms) {
+                File classroomsDirectory = new File("src/main/resources/classrooms");
+                File[] classroomsFiles = classroomsDirectory.listFiles();
+                if (classroomsFiles == null)
+                    return "Classrooms JSON files missing!";
+                for (File file : classroomsFiles) {
+                    String classroomJson;
+                    try {
+                        classroomJson = Files.readString(Paths.get(file.getPath()));
+                    } catch (IOException e) {
+                        return "JSON files can't be accessed!";
+                    }
+                    accounts.add(Classroom.deserialize(classroomJson));
+                }
+                return "Classrooms loaded successfully";
+            }
+        }
+        return "";
+    } //complete
+
+    public static ArrayList<Classroom> getClassrooms() {
+        return classrooms;
     }
 
     public String getClassName() {
@@ -59,9 +116,20 @@ public class Classroom {
         this.professorName = professorName;
     }
 
+    public int getClassID() {
+        return classID;
+    }
 
-    static {
-        classrooms = new ArrayList<>();
+    public void setClassID(int classID) {
+        this.classID = classID;
+    }
+
+    public ArrayList<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void addExercises(Exercise exercise) {
+        this.exercises.add(exercise);
     }
 
 //    public Classroom(String name, Master master){
@@ -73,35 +141,49 @@ public class Classroom {
 //    }
 
     //Getters
-    public static Classroom getClassroomByName(String name){
+    public static Classroom getClassroomByName(String name) {
         for (Classroom classroom : classrooms)
             if (classroom.getClassName().equals(name))
                 return classroom;
         return null;
     }
 
-    public static Classroom getClassroomByID(int id){
+    public static Classroom getClassroomByID(int id) {
         for (Classroom classroom : classrooms)
             if (classroom.getClassID() == id)
                 return classroom;
         return null;
     }
 
-    public Master getMaster(){
+    public Master getMaster() {
         return this.master;
     }
 
-    public ArrayList<Student> getStudents(){
+    public ArrayList<Student> getStudents() {
         return this.students;
     }
 
     //Setters
 
-    public void setMaster(Master master){
+    public void setMaster(Master master) {
         this.master = master;
     }
 
-    public void addStudentToClassroom(Student student){
+    public void addStudentToClassroom(Student student) {
         this.students.add(student);
+    }
+}
+
+class ClassroomDeepSerialized {
+    protected int classID;
+    protected String className;
+    protected String profName;
+    protected String studentsUsernamesSerialized;
+
+    public ClassroomDeepSerialized(int classID, String className, String profName, String studentsUsernamesSerialized) {
+        this.classID = classID;
+        this.className = className;
+        this.profName = profName;
+        this.studentsUsernamesSerialized = studentsUsernamesSerialized;
     }
 }
