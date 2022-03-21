@@ -29,8 +29,13 @@ public class Classroom {
     }
 
     public String serialize() {
-
-    }
+        ArrayList<String> studentsUsernames = new ArrayList<>();
+        for (Student student : students)
+            studentsUsernames.add(student.getUsername());
+        String studentUsernamesSerialized = (new Gson()).toJson(studentsUsernames);
+        ClassroomDeepSerialized classroomDeepSerialized = new ClassroomDeepSerialized(this.classID, this.className, this.professorName, studentUsernamesSerialized);
+        return (new Gson()).toJson(classroomDeepSerialized);
+    } //complete
 
     public static Classroom deserialize(String classroomSerialized) {
 
@@ -158,6 +163,12 @@ class ClassroomDeepSerialized {
     protected int classID;
     protected String className;
     protected String profName;
-    protected String studentsNamesDeepSerialized;
-    protected String exercisesIDsDeepSerialized;
+    protected String studentsUsernamesSerialized;
+
+    public ClassroomDeepSerialized(int classID, String className, String profName, String studentsUsernamesSerialized) {
+        this.classID = classID;
+        this.className = className;
+        this.profName = profName;
+        this.studentsUsernamesSerialized = studentsUsernamesSerialized;
+    }
 }
