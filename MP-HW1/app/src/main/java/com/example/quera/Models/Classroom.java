@@ -6,17 +6,17 @@ public class Classroom {
     private static ArrayList<Classroom> classrooms = new ArrayList<>();
     private static int counter = 0;
 
-    private int classID;
+    public int classID;
     private String className;
     private String professorName;
     private Master master;
     private ArrayList<Student> students;
-    private ArrayList<Exercise> exercises;
+    public ArrayList<Exercise> exercises;
 
 
     public Classroom() {
-        this.className = null;
-        this.professorName = null;
+        this.students = new Arraylist<>();
+        this.exercises = new Arraylist<>();
     }
 
     public Classroom(String className, String professorName) {
@@ -88,7 +88,7 @@ public class Classroom {
                     } catch (IOException e) {
                         return "JSON files can't be accessed!";
                     }
-                    accounts.add(Classroom.deserialize(classroomJson));
+                    classrooms.add(Classroom.deserialize(classroomJson));
                 }
                 return "Classrooms loaded successfully";
             }
