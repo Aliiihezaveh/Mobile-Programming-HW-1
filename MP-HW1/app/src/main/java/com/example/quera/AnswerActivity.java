@@ -43,6 +43,13 @@ public class AnswerActivity extends AppCompatActivity {
         }
         adapter.setStudentAnswers(answers);
 
+        for(Answer answer : Answer.getAnswers()){
+            if(answer.getExercise().getName().equals(exerciseName)){
+                if(!answers.contains(answer))
+                    answers.add(answer);
+            }
+        }
+
         backToDashBoardButton.setOnClickListener(view -> {
             Intent dashBoardIntent = new Intent(AnswerActivity.this, DashBoardActivity.class);
             startActivity(dashBoardIntent);

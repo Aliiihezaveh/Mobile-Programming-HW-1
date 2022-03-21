@@ -17,9 +17,9 @@
         android:id="@+id/classIDEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/backClassButton"
-        android:hint="Add Class By ID"
-        android:layout_marginLeft="20dp"/>
+        android:hint="Add Class By ID" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

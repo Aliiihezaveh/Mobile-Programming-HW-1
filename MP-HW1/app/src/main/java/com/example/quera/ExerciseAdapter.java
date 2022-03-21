@@ -42,7 +42,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
                 if(Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Student")){
                     Intent studentExerciseIntent = new Intent(context, ExercisePageActivity.class);
                     studentExerciseIntent.putExtra("ExerciseName", exercises.get(position).getName());
-                    //studentExerciseIntent.putExtra("ClassName", TODO);
+                    studentExerciseIntent.putExtra("ClassName", exercises.get(position).getClassroom().getClassName());
                     context.startActivity(studentExerciseIntent);
                 }else{
                     Intent answerExerciseIntent = new Intent(context, AnswerActivity.class);

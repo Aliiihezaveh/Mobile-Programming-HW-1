@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Classroom;
@@ -25,13 +26,17 @@ public class DashBoardActivity extends AppCompatActivity {
         Account account = Account.loggedInAccount;
         Boolean isStudent = account.getClass().getName().equals("com.example.quera.Models.Student")? Boolean.TRUE:Boolean.FALSE;
 
-        EditText studentNameEditText = findViewById(R.id.showStudentNameText);
         RecyclerView studentDashBoardRecycleView = findViewById(R.id.studentDashBoardRecycleView);
+        EditText studentNameEditText = findViewById(R.id.showStudentNameText);
+        EditText classIDEditText = findViewById(R.id.enterClassIDEditText);
         Button addClassButton = findViewById(R.id.addClassButton);
         Button backToRegisterButton = findViewById(R.id.backToRegisterButton);
+        Button classIDButton = findViewById(R.id.enterClassIDButton);
 
         if(!isStudent){
             addClassButton.setText("Create Class");
+        }else{
+            addClassButton.setText("Add Class");
         }
 
         studentNameEditText.setText(account.getName());
@@ -64,6 +69,25 @@ public class DashBoardActivity extends AppCompatActivity {
                 Intent registerIntent = new Intent(DashBoardActivity.this, Register_Activity.class);
                 startActivity(registerIntent);
                 finish();
+            }
+        });
+
+        classIDButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Classroom classroom = Classroom.getClassroomByID(Integer.parseInt(classIDEditText.getText().toString()));
+                if(classroom == null)
+                    Toast.makeText(getApplicationContext(), "There is no class with this ID", Toast.LENGTH_SHORT).show();
+                else{
+                    if(!Account.loggedInAccount.getClassrooms().contains(classroom)){
+                        Toast.makeText(getApplicationContext(), "you should add this class first",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent classIntent = new Intent(DashBoardActivity.this, ExerciseActivity.class);
+                        classIntent.putExtra("ClassName", classroom.getClassName());
+                        classIntent.putExtra("ProfessorName",classroom.getProfessorName());
+                        startActivity(classIntent);
+                    }
+                }
             }
         });
 
