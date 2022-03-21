@@ -46,7 +46,7 @@ public class Exercise {
     public static String saveExercises() {
         synchronized (exercises) {
             for (Exercise exercise : exercises) {
-                String exerciseFilePath = "src/main/resources/exercises/" + exercise.getClassID() + ".json";
+                String exerciseFilePath = "src/main/resources/exercises/" + exercise.getId() + ".json";
                 File exerciseFile = new File(exerciseFilePath);
                 try {
                     FileWriter writer = new FileWriter(exerciseFile.getPath(), false);
