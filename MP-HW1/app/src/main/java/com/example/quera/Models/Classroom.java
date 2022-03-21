@@ -38,8 +38,23 @@ public class Classroom {
     } //complete
 
     public static Classroom deserialize(String classroomSerialized) {
+        ClassroomDeepSerialized classroomDeepSerialized = (new Gson()).fromJson(classroomSerialized, ClassroomDeepSerialized.class);
 
-    }
+        Type collectionType = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        ArrayList<String> studentsUsernames = (new Gson()).fromJson(classroomDeepSerialized.studentsUsernamesSerialized, collectionType);
+
+        Classroom output = new Classroom();
+        output.setClassID(classroomDeepSerialized.classID);
+        output.setClassName(classroomDeepSerialized.className);
+        output.setProfessorName(classroomDeepSerialized.profName);
+        output.students = new ArrayList<();
+        for (String username : studentsUsernames) {
+            output.students.add(Student.getStudentByUsername(username));
+            Student.getStudentByUsername(username).classrooms.add(output);
+        }
+        return output;
+    } //complete
 
     public static String saveClassrooms() {
         synchronized (classrooms) {

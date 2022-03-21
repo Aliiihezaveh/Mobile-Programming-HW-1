@@ -8,8 +8,8 @@ public class Account {
     private String username;
     private String password;
     private String name;
-    private ArrayList<Classroom> classrooms;
-    private ArrayList<Exercise> exercises;
+    public ArrayList<Classroom> classrooms;
+    public ArrayList<Exercise> exercises;
 
     public void addClassrooms(Classroom classroom) {
         classrooms.add(classroom);
@@ -61,8 +61,6 @@ public class Account {
     public static Account deserialize(String accountSerialized) {
         AccountDeepSerialized accountDeepSerialized = (new Gson()).fromJson(accountSerialized, AccountDeepSerialized.class);
 
-//        Type collectionType = new TypeToken<ArrayList<String>>() {
-//        }.getType();
 //        ArrayList<String> classroomsDeepSerialized = (new Gson()).fromJson(accountDeepSerialized.classroomsSerialized, collectionType);
 //        ArrayList<Classroom> classrooms = new ArrayList<>();
 //        for (String classroomSerialized : classroomsDeepSerialized)
