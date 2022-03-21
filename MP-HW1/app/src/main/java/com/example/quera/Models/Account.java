@@ -49,10 +49,10 @@ public class Account {
             attribute = ((Student) this).getStudentID();
         }
 
-        ArrayList<String> classroomsDeepSerialized = new ArrayList<>();
-        for (Classroom classroom : this.classroom)
-            classroomsDeepSerialized.add(classroom.serialize());
-        String classroomsSerialized = (new Gson()).toJson(classroomsDeepSerialized);
+//        ArrayList<String> classroomsDeepSerialized = new ArrayList<>();
+//        for (Classroom classroom : this.classroom)
+//            classroomsDeepSerialized.add(classroom.serialize());
+//        String classroomsSerialized = (new Gson()).toJson(classroomsDeepSerialized);
 
         AccountDeepSerialized accountDeepSerialized = new AccountDeepSerialized(this.username, this.password, this.name, sorm, attribute, classroomsSerialized)
         return (new Gson()).toJson(accountDeepSerialized);
@@ -61,12 +61,12 @@ public class Account {
     public static Account deserialize(String accountSerialized) {
         AccountDeepSerialized accountDeepSerialized = (new Gson()).fromJson(accountSerialized, AccountDeepSerialized.class);
 
-        Type collectionType = new TypeToken<ArrayList<String>>() {
-        }.getType();
-        ArrayList<String> classroomsDeepSerialized = (new Gson()).fromJson(accountDeepSerialized.classroomsSerialized, collectionType);
-        ArrayList<Classroom> classrooms = new ArrayList<>();
-        for (String classroomSerialized : classroomsDeepSerialized)
-            classrooms.add(Classroom.deserialize(classroomSerialized));
+//        Type collectionType = new TypeToken<ArrayList<String>>() {
+//        }.getType();
+//        ArrayList<String> classroomsDeepSerialized = (new Gson()).fromJson(accountDeepSerialized.classroomsSerialized, collectionType);
+//        ArrayList<Classroom> classrooms = new ArrayList<>();
+//        for (String classroomSerialized : classroomsDeepSerialized)
+//            classrooms.add(Classroom.deserialize(classroomSerialized));
 
         Account output;
         if (accountDeepSerialized.SorM == "m") {
@@ -74,7 +74,6 @@ public class Account {
         } else {
             output = new Student(accountDeepSerialized.username, accountDeepSerialized.password, accountDeepSerialized.name, accountDeepSerialized.attribute);
         }
-        output.setClassrooms(classrooms);
         return output;
     } //complete
 
@@ -193,14 +192,22 @@ class AccountDeepSerialized {
     protected String name;
     protected String SorM;
     protected String attribute;
-    protected String classroomsSerialized;
+//    protected String classroomsSerialized;
 
-    public AccountDeepSerialized(String username, String password, String name, String sorM, String attribute, String classroomsSerialized) {
+//    public AccountDeepSerialized(String username, String password, String name, String sorM, String attribute, String classroomsSerialized) {
+//        this.username = username;
+//        this.password = password;
+//        this.name = name;
+//        SorM = sorM;
+//        this.attribute = attribute;
+//        this.classroomsSerialized = classroomsSerialized;
+//    }
+
+    public AccountDeepSerialized(String username, String password, String name, String sorM, String attribute) {
         this.username = username;
         this.password = password;
         this.name = name;
         SorM = sorM;
         this.attribute = attribute;
-        this.classroomsSerialized = classroomsSerialized;
     }
 }

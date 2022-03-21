@@ -35,6 +35,13 @@ public class Classroom {
         this.exercises.add(exercise);
     }
 
+    public Classroom() {
+        this.classrooms = null;
+        this.className = null;
+        this.professorName = null;
+
+    }
+
     public Classroom(String className, String professorName) {
         exercises = new ArrayList<>();
         this.className = className;
