@@ -6,6 +6,11 @@ public class Answer {
     private Student student;
     private int score;
     private String answer;
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     private Classroom classroom;
     private static ArrayList<Answer> answers = new ArrayList<>();
 
@@ -39,7 +44,7 @@ public class Answer {
         return this.answer;
     }
     public String getScore(){
-        if(this.score == 0)
+        if(this.score == -1)
             return "No Score";
         return String.valueOf(this.score);
     }

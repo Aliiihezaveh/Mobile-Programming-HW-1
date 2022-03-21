@@ -14,4 +14,10 @@
     <string name="submit">Submit</string>
     <string name="answer">answer</string>
     <string name="score">Score :</string>
+    <string name="set_score">Set Score</string>
+    <string name="student_name">student name</string>
+    <string name="back">Back</string>
+    <string name="enter_the_exercise_name">Enter the Exercise name</string>
+    <string name="enter_the_class_name">Enter the Class name</string>
+    <string name="create">Create</string>
 </resources>

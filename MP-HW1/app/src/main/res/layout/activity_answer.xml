@@ -12,6 +12,24 @@
         android:layout_marginStart="10dp"
         android:id="@+id/BackToAllAnswerButton"/>
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="edit exercise name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/changeExerciseNameEditText" />
+
+    <Button
+        android:id="@+id/changeExerciseNameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/changeExerciseNameEditText"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:text="Edit"/>
+
 
     <TextView
         android:id="@+id/exerciseTextViewName"
@@ -27,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/allAnswerRecycleView"
-        android:layout_below="@id/exerciseTextViewName"
+        android:layout_below="@id/changeExerciseNameEditText"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

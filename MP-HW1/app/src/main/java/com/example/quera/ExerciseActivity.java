@@ -20,8 +20,6 @@ import java.util.ArrayList;
 
 public class ExerciseActivity extends AppCompatActivity {
 
-    private Button createExerciseButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +31,8 @@ public class ExerciseActivity extends AppCompatActivity {
         TextView professorName = findViewById(R.id.professorNameTextView);
         Button enterExercise = findViewById(R.id.enterExerciseByNameButton);
         EditText exerciseNameEditText = findViewById(R.id.nameOfExerciseEditText);
-        createExerciseButton = findViewById(R.id.MasterCreateExercise);
+        Button dashBoardButton = findViewById(R.id.dashboardInExerciseButton);
+        Button createExerciseButton = findViewById(R.id.MasterCreateExercise);
         Intent intent = getIntent();
         String nameOfTheClass = intent.getStringExtra("ClassName");
         className.setText(nameOfTheClass);
@@ -82,6 +81,14 @@ public class ExerciseActivity extends AppCompatActivity {
                         }
                     }
                 }
+            }
+        });
+
+        dashBoardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent dashBoardIntent = new Intent(ExerciseActivity.this, DashBoardActivity.class);
+                startActivity(dashBoardIntent);
             }
         });
     }

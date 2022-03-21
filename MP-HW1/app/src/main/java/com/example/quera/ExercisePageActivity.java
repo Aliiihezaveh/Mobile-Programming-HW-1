@@ -8,11 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Answer;
-import com.example.quera.Models.Classroom;
 import com.example.quera.Models.Exercise;
 import com.example.quera.Models.Student;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,16 +35,28 @@ public class ExercisePageActivity extends AppCompatActivity {
         exerciseNameTextView.setText(nameOfExercise);
         classroomNameTextView.setText("class name");
         Exercise exercise = Exercise.getExercisesByName(nameOfExercise);
-        if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent((Student) Account.loggedInAccount) != null){
+        if (Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent((Student) Account.loggedInAccount) != null) {
             inputAnswer.setText(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent((Student) Account.loggedInAccount).getAnswer());
             scoreTextView.setText("Score:    " + String.valueOf(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent((Student) Account.loggedInAccount).getScore()));
+        }
+
+        if (Answer.getAnswerByStudentName(Account.loggedInAccount.getName()) == null) {
+            submitButton.setText("Submit");
+        } else {
+            submitButton.setText("Edit");
         }
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
-                Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, 0, Answer));
+                Answer answer = Answer.getAnswerByStudentName(Account.loggedInAccount.getName());
+                if (answer == null) {
+                    String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
+                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, -1, Answer));
+                } else {
+                    answer.setAnswer(inputAnswer.getText().toString());
+                    answer.setScore(-1);
+                }
                 Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
                 startActivity(intent);
                 finish();

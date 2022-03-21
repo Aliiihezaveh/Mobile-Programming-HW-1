@@ -24,6 +24,7 @@ public class CreateExerciseActivity extends AppCompatActivity {
 
         exerciseName = findViewById(R.id.createExerciseEditText);
         Button createExercise = findViewById(R.id.createExerciseButton);
+        Button backToDashBoard = findViewById(R.id.backInCreateExerciseButton);
 
         Intent intent = getIntent();
         String className = intent.getStringExtra("ClassName");
@@ -32,18 +33,21 @@ public class CreateExerciseActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), classroom.getClassName(), Toast.LENGTH_SHORT).show();
         }
 
-        createExercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent exerciseIntent = new Intent(CreateExerciseActivity.this, ExerciseActivity.class);
-                if (classroom != null) {
-                    classroom.addExercises(new Exercise(classroom, exerciseName.getText().toString()));
-                    exerciseIntent.putExtra("ClassName",classroom.getClassName());
-                    exerciseIntent.putExtra("ProfessorName",classroom.getProfessorName());
-                }
-                startActivity(exerciseIntent);
-                finish();
+        createExercise.setOnClickListener(view -> {
+            Intent exerciseIntent = new Intent(CreateExerciseActivity.this, ExerciseActivity.class);
+            if (classroom != null) {
+                classroom.addExercises(new Exercise(classroom, exerciseName.getText().toString()));
+                exerciseIntent.putExtra("ClassName",classroom.getClassName());
+                exerciseIntent.putExtra("ProfessorName",classroom.getProfessorName());
             }
+            startActivity(exerciseIntent);
+            finish();
+        });
+
+        backToDashBoard.setOnClickListener(view -> {
+            Intent dashBoardIntent = new Intent(CreateExerciseActivity.this, DashBoardActivity.class);
+            startActivity(dashBoardIntent);
+            finish();
         });
     }
 }

@@ -13,6 +13,14 @@
         android:text="Create Exercise"
         android:id="@+id/MasterCreateExercise"/>
 
+    <Button
+        android:id="@+id/dashboardInExerciseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MasterCreateExercise"
+        android:layout_marginTop="10dp"
+        android:text="Dashboard" />
+
 
     <EditText
         android:id="@+id/nameOfExerciseEditText"
@@ -30,26 +38,26 @@
         android:text="Enter"/>
 
     <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/classNameTextView"
-    android:layout_centerHorizontal="true"
-    android:textStyle="bold|italic"
-    android:layout_marginTop="10dp"
-    android:textSize="16sp"
-        android:layout_below="@id/MasterCreateExercise"
-    android:text="Class Name"/>
-
-    <TextView
+        android:id="@+id/classNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/professorNameTextView"
+        android:layout_below="@id/MasterCreateExercise"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold|italic"
         android:layout_marginTop="10dp"
+        android:text="Class Name"
         android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/professorNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/classNameTextView"
-        android:text="Professor Name"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Professor Name"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
