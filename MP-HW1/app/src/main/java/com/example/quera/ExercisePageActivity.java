@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Answer;
@@ -21,6 +20,10 @@ import java.util.Objects;
 
 public class ExercisePageActivity extends AppCompatActivity {
 
+    private String nameOfExercise;
+    private TextInputEditText inputAnswer;
+    private Classroom classroom;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +31,22 @@ public class ExercisePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exercise_page);
 
         Button submitButton = findViewById(R.id.submitButton);
-        TextInputEditText inputAnswer = findViewById(R.id.answerInputText);
+        inputAnswer = findViewById(R.id.answerInputText);
         TextView classroomNameTextView = findViewById(R.id.classNameText);
         TextView exerciseNameTextView = findViewById(R.id.exerciseNameText);
         TextView scoreTextView = findViewById(R.id.scoreText);
-        String nameOfExercise = getIntent().getStringExtra("ExerciseName");
-        //String nameOfClass = getIntent().getStringExtra("ClassName");
+        nameOfExercise = getIntent().getStringExtra("ExerciseName");
+        String nameOfClass = getIntent().getStringExtra("ClassName");
         exerciseNameTextView.setText(nameOfExercise);
-        classroomNameTextView.setText("class name");
+        classroomNameTextView.setText(nameOfClass);
+        classroom = Classroom.getClassroomByName(nameOfClass);
         Exercise exercise = Exercise.getExercisesByName(nameOfExercise);
         if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()) != null){
             inputAnswer.setText(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent(Account.loggedInAccount.getName()).getAnswer());
             scoreTextView.setText("Score:    " + String.valueOf(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent(Account.loggedInAccount.getName()).getScore()));
         }
 
-        if (Answer.getAnswerByStudentName(Account.loggedInAccount.getName()) == null) {
+        if (Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()) == null) {
             submitButton.setText("Submit");
         } else {
             submitButton.setText("Edit");
@@ -53,7 +57,7 @@ public class ExercisePageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()) == null){
                     String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
-                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, -1, Answer));
+                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, -1, Answer, classroom,Exercise.getExercisesByName(nameOfExercise)));
                     Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
                     startActivity(intent);
                     finish();

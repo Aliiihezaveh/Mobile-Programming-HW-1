@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.quera.Models.Classroom;
 import com.example.quera.Models.Exercise;
@@ -29,9 +27,6 @@ public class CreateExerciseActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String className = intent.getStringExtra("ClassName");
         Classroom classroom = Classroom.getClassroomByName(className);
-        if (classroom != null) {
-            Toast.makeText(getApplicationContext(), classroom.getClassName(), Toast.LENGTH_SHORT).show();
-        }
 
         createExercise.setOnClickListener(view -> {
             Intent exerciseIntent = new Intent(CreateExerciseActivity.this, ExerciseActivity.class);
