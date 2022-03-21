@@ -1,5 +1,16 @@
 package com.example.quera.Models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Exercise {
@@ -15,7 +26,7 @@ public class Exercise {
     private ArrayList<Answer> answers;
 
     public Exercise() {
-        this.answers = new Arraylist<>();
+        this.answers = new ArrayList<>();
     }
 
     public Exercise(Classroom classroom, String name) {
@@ -61,6 +72,7 @@ public class Exercise {
         }
     } //complete
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static synchronized String initializeExercises() {
         if (exercises.size() == 0) {
             synchronized (exercises) {
