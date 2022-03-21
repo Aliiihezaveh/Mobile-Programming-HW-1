@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Classroom {
     private static ArrayList<Classroom> classrooms;
+
     public static ArrayList<Classroom> getClassrooms() {
         return classrooms;
     }
@@ -73,35 +74,35 @@ public class Classroom {
 //    }
 
     //Getters
-    public static Classroom getClassroomByName(String name){
+    public static Classroom getClassroomByName(String name) {
         for (Classroom classroom : classrooms)
             if (classroom.getClassName().equals(name))
                 return classroom;
         return null;
     }
 
-    public static Classroom getClassroomByID(int id){
+    public static Classroom getClassroomByID(int id) {
         for (Classroom classroom : classrooms)
             if (classroom.getClassID() == id)
                 return classroom;
         return null;
     }
 
-    public Master getMaster(){
+    public Master getMaster() {
         return this.master;
     }
 
-    public ArrayList<Student> getStudents(){
+    public ArrayList<Student> getStudents() {
         return this.students;
     }
 
     //Setters
 
-    public void setMaster(Master master){
+    public void setMaster(Master master) {
         this.master = master;
     }
 
-    public void addStudentToClassroom(Student student){
+    public void addStudentToClassroom(Student student) {
         this.students.add(student);
     }
 }

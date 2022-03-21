@@ -2,12 +2,13 @@ package com.example.quera.Models;
 
 import java.util.ArrayList;
 
-public class Master extends Account{
+public class Master extends Account {
     public static ArrayList<Master> masters;
 
     static {
         masters = new ArrayList<>();
     }
+
     private String university;
 
     public Master(String username, String password, String name, String university) {
@@ -24,12 +25,12 @@ public class Master extends Account{
         return null;
     }
 
-    public String getUniversity(){
+    public String getUniversity() {
         return this.university;
     }
 
     //Setters
-    public void setUniversity(String university){
+    public void setUniversity(String university) {
         this.university = university;
     }
 }
