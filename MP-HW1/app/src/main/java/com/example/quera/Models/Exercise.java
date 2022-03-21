@@ -5,13 +5,18 @@ import java.util.ArrayList;
 public class Exercise {
     private static int counter = 0;
     private static ArrayList<Exercise> exercises = new ArrayList<>();
-    private ArrayList<Answer> answers;
+
     private String name;
     private int id;
     private Student student;
     private Master master;
     private String question, answer;
     private Classroom classroom;
+    private ArrayList<Answer> answers;
+
+    public Exercise() {
+        this.answers = new Arraylist<>();
+    }
 
     public Exercise(Classroom classroom, String name) {
         this.classroom = classroom;
@@ -21,6 +26,64 @@ public class Exercise {
         counter += 1;
         exercises.add(this);
     }
+
+    public String serialize() {
+        ExerciseDeepSerialized exerciseDeepSerialized = new ExerciseDeepSerialized(this.name, this.id, this.classroom.classID);
+        return (new Gson()).toJson(exerciseDeepSerialized);
+    }
+
+    public static Exercise deserialize(String exerciseSerialized) {
+        ExerciseDeepSerialized exerciseDeepSerialized = (new Gson()).fromJson(exerciseSerialized, ExerciseDeepSerialized.class);
+
+        Exercise output = new Exercise();
+        output.setId(exerciseDeepSerialized.id);
+        output.setName(exerciseDeepSerialized.name);
+        output.setClassroom(Classroom.getClassroomByID(exerciseDeepSerialized.classID));
+        Classroom.getClassroomByID(exerciseDeepSerialized.classID).exercises.add(output);
+        return output;
+    }
+
+    public static String saveExercises() {
+        synchronized (exercises) {
+            for (Exercise exercise : exercises) {
+                String exerciseFilePath = "src/main/resources/exercises/" + exercise.getClassID() + ".json";
+                File exerciseFile = new File(exerciseFilePath);
+                try {
+                    FileWriter writer = new FileWriter(exerciseFile.getPath(), false);
+                    String jsonData = exercise.serialize();
+                    writer.write(jsonData);
+                    writer.close();
+                } catch (IOException e) {
+                    return "Can't parse classrooms JSON files";
+                }
+            }
+            return "Exercise data saved successfully";
+        }
+    } //complete
+
+    public static synchronized String initializeExercises() {
+        if (exercises.size() == 0) {
+            synchronized (exercises) {
+                File exercisesDirectory = new File("src/main/resources/exercises");
+                File[] exercisesFiles = exercisesDirectory.listFiles();
+                if (exercisesFiles == null)
+                    return "Exercises JSON files missing!";
+                for (File file : exercisesFiles) {
+                    String exerciseJson;
+                    try {
+                        exerciseJson = Files.readString(Paths.get(file.getPath()));
+                    } catch (IOException e) {
+                        return "JSON files can't be accessed!";
+                    }
+                    exercises.add(Exercise.deserialize(exerciseJson));
+                }
+                return "Exercises loaded successfully";
+            }
+        }
+        return "";
+    } //complete
+
+
 
     public static Exercise getExercisesById(int exerciseId) {
         for (Exercise exercise : exercises) {
@@ -106,3 +169,23 @@ public class Exercise {
     }
     //TODO
 }
+
+class ExerciseDeepSerialized {
+    protected String name;
+    protected int id;
+    protected int classID;
+
+    public ExerciseDeepSerialized(String name, int id, int classID) {
+        this.name = name;
+        this.id = id;
+        this.classID = classID;
+    }
+}
+
+
+
+
+
+
+
+

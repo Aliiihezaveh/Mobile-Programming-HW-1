@@ -59,7 +59,7 @@ public class Account {
 //            classroomsDeepSerialized.add(classroom.serialize());
 //        String classroomsSerialized = (new Gson()).toJson(classroomsDeepSerialized);
 
-        AccountDeepSerialized accountDeepSerialized = new AccountDeepSerialized(this.username, this.password, this.name, sorm, attribute, classroomsSerialized);
+        AccountDeepSerialized accountDeepSerialized = new AccountDeepSerialized(this.username, this.password, this.name, sorm, attribute);
         return (new Gson()).toJson(accountDeepSerialized);
     } //complete
 
