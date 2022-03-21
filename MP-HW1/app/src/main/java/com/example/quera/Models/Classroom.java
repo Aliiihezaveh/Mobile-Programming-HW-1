@@ -3,37 +3,16 @@ package com.example.quera.Models;
 import java.util.ArrayList;
 
 public class Classroom {
-    private static ArrayList<Classroom> classrooms;
-
-    public static ArrayList<Classroom> getClassrooms() {
-        return classrooms;
-    }
-
+    private static ArrayList<Classroom> classrooms = new ArrayList<>();
+    private static int counter = 0;
 
     private int classID;
-    private static int counter = 0;
     private String className;
     private String professorName;
     private Master master;
     private ArrayList<Student> students;
     private ArrayList<Exercise> exercises;
 
-    public int getClassID() {
-        return classID;
-    }
-
-    public void setClassID(int classID) {
-        this.classID = classID;
-    }
-
-
-    public ArrayList<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void addExercises(Exercise exercise) {
-        this.exercises.add(exercise);
-    }
 
     public Classroom() {
         this.classrooms = null;
@@ -49,6 +28,14 @@ public class Classroom {
         this.classID = counter;
         counter += 1;
         classrooms.add(this);
+    }
+
+    public String serialize() {
+
+    }
+
+    public static ArrayList<Classroom> getClassrooms() {
+        return classrooms;
     }
 
     public String getClassName() {
@@ -67,9 +54,20 @@ public class Classroom {
         this.professorName = professorName;
     }
 
+    public int getClassID() {
+        return classID;
+    }
 
-    static {
-        classrooms = new ArrayList<>();
+    public void setClassID(int classID) {
+        this.classID = classID;
+    }
+
+    public ArrayList<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void addExercises(Exercise exercise) {
+        this.exercises.add(exercise);
     }
 
 //    public Classroom(String name, Master master){
