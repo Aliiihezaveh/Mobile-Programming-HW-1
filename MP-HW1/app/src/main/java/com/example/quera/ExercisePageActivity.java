@@ -42,6 +42,12 @@ public class ExercisePageActivity extends AppCompatActivity {
             scoreTextView.setText("Score:    " + String.valueOf(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent((Student) Account.loggedInAccount).getScore()));
         }
 
+        if (Answer.getAnswerByStudentName(Account.loggedInAccount.getName()) == null) {
+            submitButton.setText("Submit");
+        } else {
+            submitButton.setText("Edit");
+        }
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

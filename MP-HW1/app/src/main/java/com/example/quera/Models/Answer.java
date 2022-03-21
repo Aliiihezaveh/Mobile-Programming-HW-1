@@ -6,11 +6,6 @@ public class Answer {
     private Student student;
     private int score;
     private String answer;
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
     private Classroom classroom;
     private static ArrayList<Answer> answers = new ArrayList<>();
 
