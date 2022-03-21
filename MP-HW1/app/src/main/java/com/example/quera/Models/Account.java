@@ -20,14 +20,14 @@ public class Account {
     }
 
 
-    public Account(){
+    public Account() {
         this.username = null;
         this.password = null;
         this.name = null;
         this.classrooms = new ArrayList<>();
     }
 
-    public Account(String username, String password, String name){
+    public Account(String username, String password, String name) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -38,20 +38,25 @@ public class Account {
 
 
     public String serialize() {
-        String activeDeckSerialized;
-        if (activeDeck != null) activeDeckSerialized = activeDeck.serialize();
-        else activeDeckSerialized = null;
-        ArrayList<String> spareCardsDeepSerialized = new ArrayList<>();
-        ArrayList<String> decksDeepSerialized = new ArrayList<>();
-        for (Card card : this.spareCards)
-            spareCardsDeepSerialized.add(card.serialize());
-        for (Deck deck : this.decks)
-            decksDeepSerialized.add(deck.serialize());
-        String spareCardsSerialized = (new Gson()).toJson(spareCardsDeepSerialized);
-        String decksSerialized = (new Gson()).toJson(decksDeepSerialized);
-        AccountDeepSerialized accountDeepSerialized = new AccountDeepSerialized(this.username, this.password, this.nickname, this.score, this.coin, activeDeckSerialized, spareCardsSerialized, decksSerialized);
+        String sorm;
+        String attribute;
+
+        if (this instanceof Master) {
+            sorm = "m";
+            attribute = ((Master) this).getUniversity();
+        } else {
+            sorm = "s";
+            attribute = ((Student) this).getStudentID();
+        }
+
+        ArrayList<String> classroomsDeepSerialized = new ArrayList<>();
+        for (Classroom classroom : this.classroom)
+            classroomsDeepSerialized.add(classroom.serialize());
+        String classroomsSerialized = (new Gson()).toJson(classroomsDeepSerialized);
+
+        AccountDeepSerialized accountDeepSerialized = new AccountDeepSerialized(this.username, this.password, this.name, sorm, attribute, classroomsSerialized)
         return (new Gson()).toJson(accountDeepSerialized);
-    }
+    } //complete
 
     public static Account deserialize(String accountSerialized) {
         AccountDeepSerialized accountDeepSerialized = (new Gson()).fromJson(accountSerialized, AccountDeepSerialized.class);
@@ -86,11 +91,11 @@ public class Account {
     public static String saveAccounts() {
         synchronized (accounts) {
             for (Account account : accounts) {
-                String accountFilePath = "src/main/resources/static/accounts/" + account.getUsername() + ".json";
+                String accountFilePath = "src/main/resources/accounts/" + account.getUsername() + ".json";
                 File accountFile = new File(accountFilePath);
                 try {
                     FileWriter writer = new FileWriter(accountFile.getPath(), false);
-                    String jsonData = account.serialize();
+                    String jsonData = account.serialize(); //inja
                     writer.write(jsonData);
                     writer.close();
                 } catch (IOException e) {
@@ -124,21 +129,21 @@ public class Account {
     }
 
 
-    public static boolean canRegister(String username, String name, String password){
-        if(username == null || name == null || password == null) return false;
+    public static boolean canRegister(String username, String name, String password) {
+        if (username == null || name == null || password == null) return false;
         return getAccountByUsername(username) == null;
     }
 
     public static boolean canLogin(String username, String password) {
-        if(Account.getAccountByUsername(username) == null) return false;
+        if (Account.getAccountByUsername(username) == null) return false;
         return Account.getAccountByUsername(username).getPassword().equals(password);
     }
 
-    public static boolean isStudent(String username){
+    public static boolean isStudent(String username) {
         return Student.getStudentByUsername(username) != null;
     }
 
-    public static boolean isMaster(String username){
+    public static boolean isMaster(String username) {
         return Master.getMasterByUsername(username) != null;
     }
 
@@ -162,7 +167,7 @@ public class Account {
         return this.name;
     }
 
-    public ArrayList<Classroom> getClassrooms(){
+    public ArrayList<Classroom> getClassrooms() {
         return this.classrooms;
     }
 
@@ -191,15 +196,17 @@ public class Account {
 class AccountDeepSerialized {
     protected String username;
     protected String password;
-    protected String name ;
+    protected String name;
     protected String SorM;
     protected String attribute;
     protected String classroomsSerialized;
 
-    public AccountDeepSerialized(String username, String password, String name, String classroomsSerialized) {
+    public AccountDeepSerialized(String username, String password, String name, String sorM, String attribute, String classroomsSerialized) {
         this.username = username;
         this.password = password;
         this.name = name;
+        SorM = sorM;
+        this.attribute = attribute;
         this.classroomsSerialized = classroomsSerialized;
     }
 }

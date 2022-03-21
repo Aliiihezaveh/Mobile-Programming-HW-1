@@ -14,7 +14,6 @@ public class Master extends Account{
         super(username, password, name);
         this.university = university;
         masters.add(this);
-        //TODO save json
     }
 
     //Getters
