@@ -60,33 +60,23 @@ public class Account {
 
     public static Account deserialize(String accountSerialized) {
         AccountDeepSerialized accountDeepSerialized = (new Gson()).fromJson(accountSerialized, AccountDeepSerialized.class);
-        Deck activeDeck = Deck.deserialize(accountDeepSerialized.activeDeckSerialized);
+
         Type collectionType = new TypeToken<ArrayList<String>>() {
         }.getType();
-        ArrayList<String> spareCardsDeepSerialized = (new Gson()).fromJson(accountDeepSerialized.spareCardsSerialized, collectionType);
-        ArrayList<String> decksDeepSerialized = (new Gson()).fromJson(accountDeepSerialized.decksSerialized, collectionType);
-        ArrayList<Card> spareCards = new ArrayList<>();
-        ArrayList<Deck> decks = new ArrayList<>();
-        for (String cardSerialized : spareCardsDeepSerialized) {
-            try {
-                spareCards.add((new Gson()).fromJson(cardSerialized, MonsterCard.class));
-            } catch (Exception e) {
-                spareCards.add((new Gson()).fromJson(cardSerialized, MagicCard.class));
-            }
+        ArrayList<String> classroomsDeepSerialized = (new Gson()).fromJson(accountDeepSerialized.classroomsSerialized, collectionType);
+        ArrayList<Classroom> classrooms = new ArrayList<>();
+        for (String classroomSerialized : classroomsDeepSerialized)
+            classrooms.add(Classroom.deserialize(classroomSerialized));
+
+        Account output;
+        if (accountDeepSerialized.SorM == "m") {
+            output = new Master(accountDeepSerialized.username, accountDeepSerialized.password, accountDeepSerialized.name, accountDeepSerialized.attribute);
+        } else {
+            output = new Student(accountDeepSerialized.username, accountDeepSerialized.password, accountDeepSerialized.name, accountDeepSerialized.attribute);
         }
-        for (String deckSerialized : decksDeepSerialized)
-            decks.add(Deck.deserialize(deckSerialized));
-        Account output = new Account();
-        output.setUsername(accountDeepSerialized.username);
-        output.setPassword(accountDeepSerialized.password);
-        output.setNickname(accountDeepSerialized.nickname);
-        output.setScore(accountDeepSerialized.score);
-        output.setCoin(accountDeepSerialized.coin);
-        output.setActiveDeck(activeDeck);
-        output.setSpareCards(spareCards);
-        output.setDecks(decks);
+        output.setClassrooms(classrooms);
         return output;
-    }
+    } //complete
 
     public static String saveAccounts() {
         synchronized (accounts) {
@@ -95,7 +85,7 @@ public class Account {
                 File accountFile = new File(accountFilePath);
                 try {
                     FileWriter writer = new FileWriter(accountFile.getPath(), false);
-                    String jsonData = account.serialize(); //inja
+                    String jsonData = account.serialize();
                     writer.write(jsonData);
                     writer.close();
                 } catch (IOException e) {
@@ -104,12 +94,12 @@ public class Account {
             }
             return "Accounts data saved successfully";
         }
-    }
+    } //complete
 
     public static synchronized String initializeAccounts() {
         if (accounts.size() == 0) {
             synchronized (accounts) {
-                File accountsDirectory = new File("src/main/resources/static/accounts");
+                File accountsDirectory = new File("src/main/resources/accounts");
                 File[] accountsFiles = accountsDirectory.listFiles();
                 if (accountsFiles == null)
                     return "Accounts JSON files missing!";
@@ -126,7 +116,7 @@ public class Account {
             }
         }
         return "";
-    }
+    } //complete
 
 
     public static boolean canRegister(String username, String name, String password) {
@@ -190,6 +180,10 @@ public class Account {
 
     public void addExercises(Exercise exercise) {
         this.exercises.add(exercise);
+    }
+
+    public void setClassrooms(ArrayList<Classroom> classrooms) {
+        this.classrooms = classrooms;
     }
 }
 
