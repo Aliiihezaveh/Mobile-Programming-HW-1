@@ -37,9 +37,9 @@ public class ExercisePageActivity extends AppCompatActivity {
         exerciseNameTextView.setText(nameOfExercise);
         classroomNameTextView.setText("class name");
         Exercise exercise = Exercise.getExercisesByName(nameOfExercise);
-        if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent((Student) Account.loggedInAccount) != null){
-            inputAnswer.setText(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent((Student) Account.loggedInAccount).getAnswer());
-            scoreTextView.setText("Score:    " + String.valueOf(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent((Student) Account.loggedInAccount).getScore()));
+        if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()) != null){
+            inputAnswer.setText(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent(Account.loggedInAccount.getName()).getAnswer());
+            scoreTextView.setText("Score:    " + String.valueOf(Exercise.getExercisesByName(nameOfExercise).getAnswerByStudent(Account.loggedInAccount.getName()).getScore()));
         }
 
         if (Answer.getAnswerByStudentName(Account.loggedInAccount.getName()) == null) {
@@ -51,16 +51,16 @@ public class ExercisePageActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent((Student) Account.loggedInAccount) == null){
+                if(Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()) == null){
                     String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
-                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, 0, Answer));
+                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, -1, Answer));
                     Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
                     startActivity(intent);
                     finish();
                 }
                 else {
                     String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
-                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent((Student) Account.loggedInAccount).editAnswer(Answer);
+                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()).editAnswer(Answer);
                     Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
                     startActivity(intent);
                     finish();

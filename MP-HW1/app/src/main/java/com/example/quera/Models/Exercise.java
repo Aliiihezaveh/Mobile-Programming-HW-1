@@ -89,9 +89,9 @@ public class Exercise {
     public void addAnswers(Answer answer) {
         this.answers.add(answer);
     }
-    public Answer getAnswerByStudent(Student student){
+    public Answer getAnswerByStudent(String student){
         for (Answer answer:answers){
-            if(answer.getStudent().equals(student)) return answer;
+            if(answer.getStudent().getName().equals(student)) return answer;
         }
         return null;
     }

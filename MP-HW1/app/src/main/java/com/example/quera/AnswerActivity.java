@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.quera.Models.Account;
 import com.example.quera.Models.Answer;
 import com.example.quera.Models.Classroom;
 import com.example.quera.Models.Exercise;
@@ -49,7 +51,12 @@ public class AnswerActivity extends AppCompatActivity {
 
         changeExerciseNameButton.setOnClickListener(view -> {
             if (exercise != null) {
-                exercise.setName(changeExerciseNameEditText.getText().toString());
+                if(Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Master")) {
+                    exercise.setName(changeExerciseNameEditText.getText().toString());
+                    exerciseTextView.setText(exercise.getName());
+                }else{
+                    Toast.makeText(getApplicationContext(), "You don't have permission", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
