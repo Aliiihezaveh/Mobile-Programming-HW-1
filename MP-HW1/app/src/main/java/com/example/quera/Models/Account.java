@@ -207,7 +207,7 @@ class AccountDeepSerialized {
         this.username = username;
         this.password = password;
         this.name = name;
-        SorM = sorM;
+        this.SorM = sorM;
         this.attribute = attribute;
     }
 }

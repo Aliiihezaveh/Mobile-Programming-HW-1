@@ -15,10 +15,8 @@ public class Classroom {
 
 
     public Classroom() {
-        this.classrooms = null;
         this.className = null;
         this.professorName = null;
-
     }
 
     public Classroom(String className, String professorName) {
@@ -154,4 +152,12 @@ public class Classroom {
     public void addStudentToClassroom(Student student) {
         this.students.add(student);
     }
+}
+
+class ClassroomDeepSerialized {
+    protected int classID;
+    protected String className;
+    protected String profName;
+    protected String studentsNamesDeepSerialized;
+    protected String exercisesIDsDeepSerialized;
 }
