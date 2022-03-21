@@ -1,5 +1,11 @@
 package com.example.quera.Models;
 
+import com.google.gson.Gson;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Account {
@@ -18,7 +24,6 @@ public class Account {
     static {
         accounts = new ArrayList<>();
     }
-
 
     public Account() {
         this.username = null;
@@ -54,7 +59,7 @@ public class Account {
 //            classroomsDeepSerialized.add(classroom.serialize());
 //        String classroomsSerialized = (new Gson()).toJson(classroomsDeepSerialized);
 
-        AccountDeepSerialized accountDeepSerialized = new AccountDeepSerialized(this.username, this.password, this.name, sorm, attribute, classroomsSerialized)
+        AccountDeepSerialized accountDeepSerialized = new AccountDeepSerialized(this.username, this.password, this.name, sorm, attribute, classroomsSerialized);
         return (new Gson()).toJson(accountDeepSerialized);
     } //complete
 
@@ -67,7 +72,7 @@ public class Account {
 //            classrooms.add(Classroom.deserialize(classroomSerialized));
 
         Account output;
-        if (accountDeepSerialized.SorM == "m") {
+        if (accountDeepSerialized.SorM.equals("m")) {
             output = new Master(accountDeepSerialized.username, accountDeepSerialized.password, accountDeepSerialized.name, accountDeepSerialized.attribute);
         } else {
             output = new Student(accountDeepSerialized.username, accountDeepSerialized.password, accountDeepSerialized.name, accountDeepSerialized.attribute);
