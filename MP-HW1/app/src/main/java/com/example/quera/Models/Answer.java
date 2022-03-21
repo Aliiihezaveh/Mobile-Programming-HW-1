@@ -10,8 +10,7 @@ public class Answer {
     private Classroom classroom;
     private Exercise exercise;
 
-    public static ArrayList<Answer> getAnswers() {
-        return answers;
+    public Answer() {
     }
 
     public Answer(Student student, int score, String answer, Classroom classroom, Exercise exercise) {
@@ -28,8 +27,8 @@ public class Answer {
     }
 
     public static Answer getAnswerByStudentName(String studentName) {
-        for(Answer answer : answers){
-            if(answer.getStudent().getName().equals(studentName))
+        for (Answer answer : answers) {
+            if (answer.getStudent().getName().equals(studentName))
                 return answer;
         }
         return null;
@@ -39,18 +38,25 @@ public class Answer {
         Answer.answers = answers;
     }
 
-    public Student getStudent(){
+    public Student getStudent() {
         return this.student;
     }
-    public String getAnswer(){
+
+    public String getAnswer() {
         return this.answer;
     }
-    public String getScore(){
-        if(this.score == -1)
+
+    public String getScore() {
+        if (this.score == -1)
             return "No Score";
         return String.valueOf(this.score);
     }
-    public void editAnswer(String answer){
+
+    public static ArrayList<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void editAnswer(String answer) {
         this.answer = answer;
     }
 

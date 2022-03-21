@@ -28,8 +28,9 @@ public class Classroom {
 
 
     public Classroom() {
-        this.students = new ArrayList<>();
-        this.exercises = new ArrayList<>();
+        this.students = new Arraylist<>();
+        this.exercises = new Arraylist<>();
+        classrooms.add(this);
     }
 
     public Classroom(String className, String professorName) {

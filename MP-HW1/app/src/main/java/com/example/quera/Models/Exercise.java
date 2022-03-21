@@ -26,7 +26,8 @@ public class Exercise {
     private ArrayList<Answer> answers;
 
     public Exercise() {
-        this.answers = new ArrayList<>();
+        this.answers = new Arraylist<>();
+        exercises.add(this);
     }
 
     public Exercise(Classroom classroom, String name) {
@@ -94,7 +95,6 @@ public class Exercise {
         }
         return "";
     } //complete
-
 
 
     public static Exercise getExercisesById(int exerciseId) {
