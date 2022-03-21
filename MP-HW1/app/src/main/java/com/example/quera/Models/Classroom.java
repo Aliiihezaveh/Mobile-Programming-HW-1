@@ -34,6 +34,50 @@ public class Classroom {
 
     }
 
+    public static Classroom deserialize(String classroomSerialized) {
+
+    }
+
+    public static String saveClassrooms() {
+        synchronized (classrooms) {
+            for (Classroom classroom : classrooms) {
+                String classroomFilePath = "src/main/resources/classrooms/" + classroom.getClassID() + ".json";
+                File classroomFile = new File(classroomFilePath);
+                try {
+                    FileWriter writer = new FileWriter(classroomFile.getPath(), false);
+                    String jsonData = classroom.serialize();
+                    writer.write(jsonData);
+                    writer.close();
+                } catch (IOException e) {
+                    return "Can't parse classrooms JSON files";
+                }
+            }
+            return "Classrooms data saved successfully";
+        }
+    } //complete
+
+    public static synchronized String initializeClassrooms() {
+        if (classrooms.size() == 0) {
+            synchronized (classrooms) {
+                File classroomsDirectory = new File("src/main/resources/classrooms");
+                File[] classroomsFiles = classroomsDirectory.listFiles();
+                if (classroomsFiles == null)
+                    return "Classrooms JSON files missing!";
+                for (File file : classroomsFiles) {
+                    String classroomJson;
+                    try {
+                        classroomJson = Files.readString(Paths.get(file.getPath()));
+                    } catch (IOException e) {
+                        return "JSON files can't be accessed!";
+                    }
+                    accounts.add(Classroom.deserialize(classroomJson));
+                }
+                return "Classrooms loaded successfully";
+            }
+        }
+        return "";
+    } //complete
+
     public static ArrayList<Classroom> getClassrooms() {
         return classrooms;
     }
