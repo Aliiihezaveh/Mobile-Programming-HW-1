@@ -48,4 +48,7 @@ public class Answer {
             return "No Score";
         return String.valueOf(this.score);
     }
+    public void editAnswer(String answer){
+        this.answer = answer;
+    }
 }
