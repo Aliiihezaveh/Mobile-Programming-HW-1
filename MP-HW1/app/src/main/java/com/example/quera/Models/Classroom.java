@@ -1,5 +1,18 @@
 package com.example.quera.Models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Classroom {
@@ -15,8 +28,8 @@ public class Classroom {
 
 
     public Classroom() {
-        this.students = new Arraylist<>();
-        this.exercises = new Arraylist<>();
+        this.students = new ArrayList<>();
+        this.exercises = new ArrayList<>();
     }
 
     public Classroom(String className, String professorName) {
@@ -48,7 +61,7 @@ public class Classroom {
         output.setClassID(classroomDeepSerialized.classID);
         output.setClassName(classroomDeepSerialized.className);
         output.setProfessorName(classroomDeepSerialized.profName);
-        output.students = new ArrayList<();
+        output.students = new ArrayList<>();
         for (String username : studentsUsernames) {
             output.students.add(Student.getStudentByUsername(username));
             Student.getStudentByUsername(username).classrooms.add(output);
@@ -74,6 +87,7 @@ public class Classroom {
         }
     } //complete
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static synchronized String initializeClassrooms() {
         if (classrooms.size() == 0) {
             synchronized (classrooms) {

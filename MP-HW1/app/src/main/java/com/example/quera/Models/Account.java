@@ -1,5 +1,9 @@
 package com.example.quera.Models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileWriter;
@@ -98,6 +102,7 @@ public class Account {
         }
     } //complete
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static synchronized String initializeAccounts() {
         if (accounts.size() == 0) {
             synchronized (accounts) {
