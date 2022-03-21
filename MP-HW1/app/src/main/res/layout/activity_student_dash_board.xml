@@ -29,6 +29,23 @@
         android:text="Back" />
 
     <EditText
+        android:id="@+id/enterClassIDEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/showStudentNameText"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/backToRegisterButton"
+        android:hint="enter class by ID" />
+    <Button
+        android:id="@+id/enterClassIDButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:layout_toRightOf="@id/enterClassIDEditText"
+        android:layout_below="@id/showStudentNameText"
+        android:layout_marginLeft="10dp"/>
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/addClassButton"

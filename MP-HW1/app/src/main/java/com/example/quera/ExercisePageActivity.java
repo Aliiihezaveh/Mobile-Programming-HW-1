@@ -60,6 +60,7 @@ public class ExercisePageActivity extends AppCompatActivity {
                 }
                 else {
                     String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
+                    Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()).setScore(-1);
                     Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).getAnswerByStudent(Account.loggedInAccount.getName()).editAnswer(Answer);
                     Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
                     startActivity(intent);

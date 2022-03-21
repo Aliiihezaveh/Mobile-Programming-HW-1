@@ -50,7 +50,10 @@ public class ClassroomActivity extends AppCompatActivity {
                         Account.loggedInAccount.addClassrooms(classroom);
                         Toast.makeText(getApplicationContext(), "class added",Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(getApplicationContext(), "You Have this class",Toast.LENGTH_SHORT).show();
+                        Intent classIntent = new Intent(ClassroomActivity.this, ExerciseActivity.class);
+                        classIntent.putExtra("ClassName", classroom.getClassName());
+                        classIntent.putExtra("ProfessorName",classroom.getProfessorName());
+                        startActivity(classIntent);
                     }
                 }
             }
