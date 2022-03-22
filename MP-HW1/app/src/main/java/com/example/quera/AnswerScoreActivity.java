@@ -1,12 +1,12 @@
 package com.example.quera;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quera.Models.Answer;
 
@@ -34,6 +34,7 @@ public class AnswerScoreActivity extends AppCompatActivity {
         setScoreButton.setOnClickListener(view -> {
             if (answer != null) {
                 answer.setScore(Integer.parseInt(scoreEditText.getText().toString()));
+                HomeActivity.save();
             }
             Intent dashBoardIntent = new Intent(AnswerScoreActivity.this, DashBoardActivity.class);
             startActivity(dashBoardIntent);

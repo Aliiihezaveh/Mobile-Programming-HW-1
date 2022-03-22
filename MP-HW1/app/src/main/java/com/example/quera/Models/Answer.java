@@ -1,5 +1,17 @@
 package com.example.quera.Models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Answer {
@@ -73,7 +85,9 @@ public class Answer {
                 for (File file : answersFiles) {
                     String answerJson;
                     try {
-                        answerJson = Files.readString(Paths.get(file.getPath()));
+                        File file1 = new File(String.valueOf(Paths.get(file.getPath())));
+                        answerJson = String.valueOf(new BufferedReader(new FileReader(file1)));
+                        //answerJson = Files.readString(Paths.get(file.getPath()));
                     } catch (IOException e) {
                         return "JSON files can't be accessed!";
                     }

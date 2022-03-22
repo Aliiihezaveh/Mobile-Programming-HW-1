@@ -44,6 +44,7 @@ public class ClassroomAdapter extends RecyclerView.Adapter<ClassroomAdapter.Stud
             public void onClick(View view) {
                 if(!Account.loggedInAccount.getClassrooms().contains(classrooms.get(position))){
                     Account.loggedInAccount.addClassrooms(classrooms.get(position));
+                    HomeActivity.save();
                     Toast.makeText(context, "class added",Toast.LENGTH_SHORT).show();
                 }else {
                     Intent classIntent = new Intent(context, ExerciseActivity.class);

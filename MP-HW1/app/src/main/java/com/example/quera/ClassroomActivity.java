@@ -1,17 +1,18 @@
 package com.example.quera;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Classroom;
+
 import java.util.ArrayList;
 
 public class ClassroomActivity extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class ClassroomActivity extends AppCompatActivity {
             else{
                 if(!Account.loggedInAccount.getClassrooms().contains(classroom)){
                     Account.loggedInAccount.addClassrooms(classroom);
+                    HomeActivity.save();
                     Toast.makeText(getApplicationContext(), "class added",Toast.LENGTH_SHORT).show();
                 }else{
                     Intent classIntent = new Intent(ClassroomActivity.this, ExerciseActivity.class);

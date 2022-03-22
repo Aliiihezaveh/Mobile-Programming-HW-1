@@ -1,11 +1,11 @@
 package com.example.quera;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quera.Models.Classroom;
 import com.example.quera.Models.Exercise;
@@ -32,6 +32,7 @@ public class CreateExerciseActivity extends AppCompatActivity {
             Intent exerciseIntent = new Intent(CreateExerciseActivity.this, ExerciseActivity.class);
             if (classroom != null) {
                 classroom.addExercises(new Exercise(classroom, exerciseName.getText().toString()));
+                HomeActivity.save();
                 exerciseIntent.putExtra("ClassName",classroom.getClassName());
                 exerciseIntent.putExtra("ProfessorName",classroom.getProfessorName());
             }

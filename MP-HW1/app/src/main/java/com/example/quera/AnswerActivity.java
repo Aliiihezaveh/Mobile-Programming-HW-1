@@ -1,15 +1,15 @@
 package com.example.quera;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Answer;
@@ -61,6 +61,7 @@ public class AnswerActivity extends AppCompatActivity {
                 if(Account.loggedInAccount.getClass().getName().equals("com.example.quera.Models.Master")) {
                     exercise.setName(changeExerciseNameEditText.getText().toString());
                     exerciseTextView.setText(exercise.getName());
+                    HomeActivity.save();
                 }else{
                     Toast.makeText(getApplicationContext(), "You don't have permission", Toast.LENGTH_SHORT).show();
                 }

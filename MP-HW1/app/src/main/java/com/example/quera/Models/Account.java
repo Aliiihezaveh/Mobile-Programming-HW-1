@@ -5,10 +5,12 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -113,7 +115,9 @@ public class Account {
                 for (File file : accountsFiles) {
                     String accountJson;
                     try {
-                        accountJson = Files.readString(Paths.get(file.getPath()));
+                        File file1 = new File(String.valueOf(Paths.get(file.getPath())));
+                        accountJson = String.valueOf(new BufferedReader(new FileReader(file1)));
+                        //accountJson = Files.readString(Paths.get(file.getPath()));
                     } catch (IOException e) {
                         return "JSON files can't be accessed!";
                     }

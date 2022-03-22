@@ -6,10 +6,11 @@ import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -26,8 +27,7 @@ public class Exercise {
     public ArrayList<Answer> answers;
 
     public Exercise() {
-        counter++;
-        this.answers = new Arraylist<>();
+        this.answers = new ArrayList<>();
         exercises.add(this);
     }
 
@@ -85,7 +85,9 @@ public class Exercise {
                 for (File file : exercisesFiles) {
                     String exerciseJson;
                     try {
-                        exerciseJson = Files.readString(Paths.get(file.getPath()));
+                        File file1 = new File(String.valueOf(Paths.get(file.getPath())));
+                        exerciseJson = String.valueOf(new BufferedReader(new FileReader(file1)));
+                        //exerciseJson = Files.readString(Paths.get(file.getPath()));
                     } catch (IOException e) {
                         return "JSON files can't be accessed!";
                     }
@@ -96,7 +98,6 @@ public class Exercise {
         }
         return "";
     } //complete
-
 
     public static Exercise getExercisesById(int exerciseId) {
         for (Exercise exercise : exercises) {

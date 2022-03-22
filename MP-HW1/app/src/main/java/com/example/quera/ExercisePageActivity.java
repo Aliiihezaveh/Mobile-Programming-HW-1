@@ -1,13 +1,13 @@
 package com.example.quera;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Answer;
@@ -59,6 +59,7 @@ public class ExercisePageActivity extends AppCompatActivity {
                     String Answer = Objects.requireNonNull(inputAnswer.getText()).toString();
                     Objects.requireNonNull(Exercise.getExercisesByName(nameOfExercise)).addAnswers(new Answer((Student) Account.loggedInAccount, -1, Answer, classroom,Exercise.getExercisesByName(nameOfExercise)));
                     Intent intent = new Intent(ExercisePageActivity.this, DashBoardActivity.class);
+                    HomeActivity.save();
                     startActivity(intent);
                     finish();
                 }

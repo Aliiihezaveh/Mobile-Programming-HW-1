@@ -7,11 +7,12 @@ import androidx.annotation.RequiresApi;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -28,9 +29,8 @@ public class Classroom {
 
 
     public Classroom() {
-        counter++;
-        this.students = new Arraylist<>();
-        this.exercises = new Arraylist<>();
+        this.students = new ArrayList<>();
+        this.exercises = new ArrayList<>();
         classrooms.add(this);
     }
 
@@ -100,7 +100,9 @@ public class Classroom {
                 for (File file : classroomsFiles) {
                     String classroomJson;
                     try {
-                        classroomJson = Files.readString(Paths.get(file.getPath()));
+                        File file1 = new File(String.valueOf(Paths.get(file.getPath())));
+                        classroomJson = String.valueOf(new BufferedReader(new FileReader(file1)));
+                        //classroomJson = Files.readString(Paths.get(file.getPath()));
                     } catch (IOException e) {
                         return "JSON files can't be accessed!";
                     }

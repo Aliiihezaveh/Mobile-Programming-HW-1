@@ -1,11 +1,11 @@
 package com.example.quera;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quera.Models.Account;
 import com.example.quera.Models.Classroom;
@@ -27,6 +27,7 @@ public class CreateClassActivity extends AppCompatActivity {
         createClass.setOnClickListener(view -> {
             Classroom classroom = new Classroom(className.getText().toString(), Account.loggedInAccount.getName());
             Account.loggedInAccount.addClassrooms(classroom);
+            HomeActivity.save();
             Intent dashBoardIntent = new Intent(CreateClassActivity.this, DashBoardActivity.class);
             startActivity(dashBoardIntent);
         });
