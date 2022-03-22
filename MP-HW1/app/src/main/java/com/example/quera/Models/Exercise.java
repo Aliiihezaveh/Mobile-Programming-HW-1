@@ -18,14 +18,15 @@ public class Exercise {
     private static ArrayList<Exercise> exercises = new ArrayList<>();
 
     private String name;
-    private int id;
+    public int id;
     private Student student;
     private Master master;
     private String question, answer;
     private Classroom classroom;
-    private ArrayList<Answer> answers;
+    public ArrayList<Answer> answers;
 
     public Exercise() {
+        counter++;
         this.answers = new Arraylist<>();
         exercises.add(this);
     }

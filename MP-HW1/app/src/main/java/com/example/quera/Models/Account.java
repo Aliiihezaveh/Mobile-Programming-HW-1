@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Account {
     public static ArrayList<Account> accounts;
     public static Account loggedInAccount;
-    private String username;
+    public String username;
     private String password;
     private String name;
     public ArrayList<Classroom> classrooms;

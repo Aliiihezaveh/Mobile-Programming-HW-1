@@ -28,6 +28,7 @@ public class Classroom {
 
 
     public Classroom() {
+        counter++;
         this.students = new Arraylist<>();
         this.exercises = new Arraylist<>();
         classrooms.add(this);
