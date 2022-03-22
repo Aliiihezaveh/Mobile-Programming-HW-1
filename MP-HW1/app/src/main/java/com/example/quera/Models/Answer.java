@@ -148,9 +148,9 @@ public class Answer {
 class AnswerDeepSerialized {
     protected int score;
     protected String studentUsername;
-    protected String exerciseID;
+    protected int exerciseID;
 
-    public AnswerDeepSerialized(int score, String studentUsername, String exerciseID) {
+    public AnswerDeepSerialized(int score, String studentUsername, int exerciseID) {
         this.score = score;
         this.studentUsername = studentUsername;
         this.exerciseID = exerciseID;
